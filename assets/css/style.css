@@ -1,0 +1,417 @@
+/*
+  Let Ship Africa Inc. — brand palette (placeholder, swap when brand guide is finalized)
+  Navy: deep, trustworthy, logistics/maritime feel. Gold/orange: energy, Africa, action.
+*/
+:root {
+    --lsa-navy: #0b2545;
+    --lsa-navy-dark: #071a33;
+    --lsa-accent: #e8871e;
+    --lsa-accent-dark: #c76f10;
+    --lsa-light: #f6f8fb;
+    --lsa-font-heading: "Poppins", "Segoe UI", sans-serif;
+    --lsa-font-body: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    font-family: var(--lsa-font-body);
+    color: #1c2733;
+    background-color: #ffffff;
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand {
+    font-family: var(--lsa-font-heading);
+    letter-spacing: -0.01em;
+}
+
+h2.fw-bold { font-weight: 700 !important; }
+
+.text-lsa-accent { color: var(--lsa-accent) !important; }
+.bg-lsa-navy { background-color: var(--lsa-navy) !important; }
+.bg-lsa-light { background-color: var(--lsa-light) !important; }
+
+.lsa-navbar {
+    background-color: var(--lsa-navy);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-lsa-accent {
+    background-color: var(--lsa-accent);
+    border-color: var(--lsa-accent);
+    color: #fff;
+    font-family: var(--lsa-font-heading);
+}
+.btn-lsa-accent:hover,
+.btn-lsa-accent:focus {
+    background-color: var(--lsa-accent-dark);
+    border-color: var(--lsa-accent-dark);
+    color: #fff;
+}
+
+.btn-lsa-outline {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: var(--lsa-font-heading);
+}
+.btn-lsa-outline:hover {
+    background-color: #fff;
+    color: var(--lsa-navy);
+}
+
+/* Flat-gradient hero (used only where no photo is assigned, e.g. FAQ, closing CTAs) */
+.lsa-hero {
+    background: linear-gradient(135deg, var(--lsa-navy) 0%, var(--lsa-navy-dark) 100%);
+    color: #fff;
+    padding: 5rem 0;
+}
+.lsa-hero h1, .lsa-hero h2 {
+    font-weight: 700;
+}
+.lsa-hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); }
+
+/* Photo hero: full-bleed background image with a navy overlay for legible text */
+.lsa-hero-photo {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 6rem 0;
+}
+.lsa-hero-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(11, 37, 69, 0.88) 0%, rgba(7, 26, 51, 0.92) 100%);
+}
+.lsa-hero-photo > .container {
+    position: relative;
+    z-index: 1;
+}
+.lsa-hero-photo h1 {
+    font-weight: 700;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+}
+.lsa-hero-photo.lsa-hero-sm { padding: 4rem 0; }
+
+/* Home hero carousel */
+.lsa-hero-carousel .carousel-item {
+    min-height: 620px;
+    background-size: cover;
+    background-position: center;
+}
+.lsa-hero-carousel .carousel-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(11, 37, 69, 0.88) 0%, rgba(7, 26, 51, 0.92) 100%);
+}
+.lsa-hero-carousel .carousel-item .container {
+    position: relative;
+    z-index: 1;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.lsa-hero-carousel h1 {
+    font-weight: 700;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    color: #fff;
+}
+.lsa-hero-carousel .lsa-hero-sub {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 1.15rem;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.lsa-hero-carousel .carousel-indicators {
+    margin-bottom: 1.5rem;
+}
+.lsa-hero-carousel .carousel-indicators [data-bs-target] {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.45);
+    margin: 0 0.35rem;
+}
+.lsa-hero-carousel .carousel-indicators .active {
+    background-color: var(--lsa-accent);
+}
+.lsa-hero-carousel .carousel-control-prev,
+.lsa-hero-carousel .carousel-control-next {
+    width: 3.5rem;
+    opacity: 0.7;
+}
+.lsa-hero-carousel .carousel-control-prev:hover,
+.lsa-hero-carousel .carousel-control-next:hover {
+    opacity: 1;
+}
+
+.lsa-page-header {
+    background: linear-gradient(135deg, var(--lsa-navy) 0%, var(--lsa-navy-dark) 100%);
+    color: #fff;
+    padding: 3.5rem 0;
+}
+
+/* About-section image with an offset accent block behind it */
+.lsa-about-image-wrap {
+    position: relative;
+    isolation: isolate;
+    margin: 1.25rem 0 0 1.25rem;
+}
+.lsa-about-image-wrap::before {
+    content: "";
+    position: absolute;
+    top: -1.25rem;
+    left: -1.25rem;
+    width: 100%;
+    height: 100%;
+    background-color: var(--lsa-accent);
+    border-radius: 0.75rem;
+    z-index: -1;
+}
+.lsa-about-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 1.25rem 2.5rem rgba(11, 37, 69, 0.2);
+}
+.lsa-about-image-wrap.lsa-accent-right {
+    margin: 1.25rem 1.25rem 0 0;
+}
+.lsa-about-image-wrap.lsa-accent-right::before {
+    left: auto;
+    right: -1.25rem;
+}
+
+/* Full-width image band used to break up long text sections */
+.lsa-img-band {
+    background-size: cover;
+    background-position: center;
+    min-height: 320px;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.15);
+}
+
+/* Sections */
+.lsa-section { padding: 4.5rem 0; }
+.lsa-section-alt { background-color: var(--lsa-light); }
+.lsa-text-on-dark { color: rgba(255, 255, 255, 0.88) !important; }
+
+.lsa-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--lsa-accent);
+}
+
+/* Cards */
+.lsa-card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(11, 37, 69, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    height: 100%;
+    background-color: #fff;
+}
+.lsa-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(11, 37, 69, 0.15);
+}
+.lsa-card h3, .lsa-card h5 { font-family: var(--lsa-font-heading); }
+
+.icon-badge {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.65rem;
+    background-color: rgba(232, 135, 30, 0.12);
+    color: var(--lsa-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+.icon-badge.icon-badge-navy {
+    background-color: rgba(11, 37, 69, 0.08);
+    color: var(--lsa-navy);
+}
+
+/* How We Work timeline (Home page) */
+.lsa-timeline-line {
+    position: absolute;
+    top: 1.375rem;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background-color: rgba(11, 37, 69, 0.15);
+    z-index: 0;
+}
+.lsa-timeline .lsa-step-number {
+    position: relative;
+    z-index: 1;
+}
+.lsa-timeline .lsa-step-number i {
+    font-size: 1.25rem;
+}
+.lsa-timeline-line-5 {
+    left: 10%;
+    right: 10%;
+}
+
+/* Our Commitment pull-quote (Home page) */
+.lsa-quote-icon {
+    font-size: 2.5rem;
+    color: var(--lsa-accent);
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.lsa-pull-quote {
+    font-family: var(--lsa-font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--lsa-navy);
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+}
+
+/* Country cards (Home page global partnerships grid) */
+.lsa-country-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Image-topped service cards (Home page service highlights) */
+.lsa-service-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.lsa-service-card-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.lsa-service-card-img .icon-badge {
+    position: absolute;
+    left: 1.25rem;
+    bottom: -1.375rem;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(11, 37, 69, 0.2);
+}
+.lsa-service-card > div:last-child {
+    padding-top: 2rem !important;
+}
+
+/* Step numbers (How We Work) */
+.lsa-step-number {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background-color: var(--lsa-navy);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: var(--lsa-font-heading);
+}
+
+/* Footer */
+.lsa-footer {
+    background-color: var(--lsa-navy-dark);
+}
+.lsa-footer-links li {
+    margin-bottom: 0.5rem;
+    color: #c9d4e3;
+}
+.lsa-footer-links a {
+    color: #c9d4e3;
+    text-decoration: none;
+}
+.lsa-footer-links a:hover { color: var(--lsa-accent); }
+.lsa-social-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+.lsa-social-icon:hover { background-color: var(--lsa-accent); color: #fff; }
+
+/* FAQ accordion tweaks */
+.accordion-button:not(.collapsed) {
+    background-color: rgba(232, 135, 30, 0.1);
+    color: var(--lsa-navy);
+}
+.accordion-button:focus { box-shadow: none; }
+.accordion-button { font-family: var(--lsa-font-heading); font-weight: 600; }
+
+/* Forms */
+.lsa-form-card {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 20px rgba(11, 37, 69, 0.1);
+}
+
+/* Contact page dark info panel */
+.lsa-contact-panel {
+    background: linear-gradient(135deg, var(--lsa-navy) 0%, var(--lsa-navy-dark) 100%);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.2);
+}
+.lsa-contact-panel-img {
+    height: 160px;
+    border-radius: 0.5rem;
+    background-size: cover;
+    background-position: center;
+}
+.icon-badge.icon-badge-light {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+/* Back to top */
+.lsa-back-to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--lsa-navy);
+    color: #fff;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(11, 37, 69, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.15s ease;
+    z-index: 1030;
+}
+.lsa-back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.lsa-back-to-top:hover { background-color: var(--lsa-accent); }

@@ -1,0 +1,11 @@
+# Editor/tool-local config, not project source
+.claude/
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
