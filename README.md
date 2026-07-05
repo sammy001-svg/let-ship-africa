@@ -4,18 +4,28 @@ Plain PHP 8 + MySQL marketing site with lead-capture forms (quote requests, part
 inquiries, contact messages) and a basic admin panel to review submissions. No framework,
 no build step — built to run on any shared/cPanel hosting that supports PHP + MySQL.
 
+> **Deploying to real cPanel hosting?** See [DEPLOYMENT.md](DEPLOYMENT.md) for the full
+> walkthrough (file upload, MySQL Databases, phpMyAdmin import, email, SSL). The steps
+> below are for local development only.
+
 ## Local setup (XAMPP)
 
 1. Start **Apache** and **MySQL** from the XAMPP Control Panel.
-2. Import the schema:
+2. Create the database, then import the schema into it:
    ```
-   C:\xampp\mysql\bin\mysql.exe -u root < "database\schema.sql"
+   C:\xampp\mysql\bin\mysql.exe -u root -e "CREATE DATABASE IF NOT EXISTS letshipafrica CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+   C:\xampp\mysql\bin\mysql.exe -u root letshipafrica < "database\schema.sql"
    ```
-   (or use phpMyAdmin → Import → select `database/schema.sql`).
-3. This project lives outside `htdocs`. A junction was created so Apache can serve it:
+   (or via phpMyAdmin: create the `letshipafrica` database, select it, then Import →
+   `database/schema.sql`).
+3. Copy `config/config.sample.php` to `config/config.php` — the local defaults
+   (XAMPP's empty root password, `http://localhost/letshipafrica`) already match this
+   setup, so no edits are required just to get it running. `config.php` is gitignored;
+   it's where real credentials go later and it never gets committed.
+4. This project lives outside `htdocs`. A junction was created so Apache can serve it:
    `C:\xampp\htdocs\letshipafrica` → `C:\LET SHIP AFRICA INC`.
-4. Browse to **http://localhost/letshipafrica/**
-5. **Create your admin account** (none is seeded, on purpose — this repo is public):
+5. Browse to **http://localhost/letshipafrica/**
+6. **Create your admin account** (none is seeded, on purpose — this repo is public):
    ```
    C:\xampp\php\php.exe -r "echo password_hash('YourStrongPassword', PASSWORD_DEFAULT), PHP_EOL;"
    ```
@@ -30,12 +40,13 @@ no build step — built to run on any shared/cPanel hosting that supports PHP + 
 
 ## Before going live
 
-Edit `config/config.php`:
+Full cPanel deployment steps are in [DEPLOYMENT.md](DEPLOYMENT.md). In short, on the
+production server, copy `config/config.sample.php` to `config/config.php` and fill in:
 - `DB_*` — production database credentials.
 - `SMTP_*` / `NOTIFY_TO_EMAIL` — real company mailbox so lead notification emails send.
   Submissions are always saved to the database regardless of whether email sending
   succeeds, so nothing is lost if SMTP isn't configured yet.
-- `SITE_URL` — the production domain.
+- `SITE_URL` — the production domain, with `https://`.
 
 Replace placeholder content:
 - `includes/footer.php` and `contact.php` — real office address, phone, email, hours.
@@ -51,7 +62,9 @@ Replace placeholder content:
 - `includes/` — shared header/footer/nav, DB connection, helper functions.
 - `admin/` — login-protected dashboard to view and triage submissions.
 - `vendor/phpmailer/` — PHPMailer, vendored manually (no Composer available locally).
-- `database/schema.sql` — run this to create the database and tables.
+- `database/schema.sql` — creates the tables (not the database itself — see setup steps).
+- `config/config.sample.php` — tracked template; copy to `config/config.php` (gitignored)
+  and fill in real credentials there.
 
 ## Roadmap
 

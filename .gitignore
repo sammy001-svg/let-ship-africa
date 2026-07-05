@@ -9,3 +9,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Real environment config — contains DB/SMTP credentials.
+# Copy config/config.sample.php to config/config.php and fill in real values.
+config/config.php

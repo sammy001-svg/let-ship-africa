@@ -1,10 +1,13 @@
 -- Let Ship Africa Inc. website database
--- Import with: mysql -u root -p < schema.sql   (or via phpMyAdmin -> Import)
-
-CREATE DATABASE IF NOT EXISTS letshipafrica
-    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-USE letshipafrica;
+--
+-- This file only creates tables — it deliberately does NOT run CREATE DATABASE
+-- or USE, because shared-hosting DB users (e.g. on cPanel) usually don't have
+-- privileges to create a database and are scoped to one already provisioned
+-- via the host's control panel. Create/select the database first, then import
+-- this file into it:
+--   Local (XAMPP):  mysql -u root -e "CREATE DATABASE IF NOT EXISTS letshipafrica CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+--                    mysql -u root letshipafrica < schema.sql
+--   cPanel:          create the DB via "MySQL Databases", then phpMyAdmin -> select it -> Import -> this file.
 
 CREATE TABLE IF NOT EXISTS admin_users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
