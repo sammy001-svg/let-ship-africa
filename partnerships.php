@@ -16,7 +16,7 @@ require __DIR__ . '/includes/header.php';
         <div class="row align-items-center g-5">
             <div class="col-lg-6 order-lg-1">
                 <div class="lsa-about-image-wrap">
-                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/world-map.jpg" class="lsa-about-image" alt="World map showing global trade routes">
+                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/world-map.jpg" class="lsa-about-image" alt="World map showing global trade routes" loading="lazy" decoding="async">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-2">

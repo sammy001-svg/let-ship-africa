@@ -1,6 +1,6 @@
 <?php
-$pageTitle = 'Home';
-$pageDescription = 'Air freight, ocean freight, cargo consolidation, sourcing, and trade facilitation connecting Liberia to global markets.';
+$pageTitle = 'Freight Forwarding & Logistics in Monrovia, Liberia';
+$pageDescription = 'Monrovia-based freight forwarder offering air freight, ocean freight, cargo consolidation, sourcing, and trade facilitation — connecting Liberia to global markets.';
 require __DIR__ . '/includes/header.php';
 ?>
 
@@ -26,7 +26,7 @@ require __DIR__ . '/includes/header.php';
         <div class="carousel-item" style="background-image: url('<?= e(SITE_URL) ?>/assets/img/stock/cargo-plane.jpg');">
             <div class="container text-center">
                 <p class="lsa-eyebrow mb-2">Air &amp; Ocean Freight</p>
-                <h1 class="mb-3">Fast, Reliable Freight Solutions</h1>
+                <h2 class="mb-3">Fast, Reliable Freight Solutions</h2>
                 <p class="lsa-hero-sub mb-4">Air, ocean, and consolidated cargo &mdash; moved with confidence.</p>
                 <div class="d-flex flex-wrap justify-content-center gap-3">
                     <a href="<?= e(SITE_URL) ?>/services.php" class="btn btn-lsa-accent btn-lg fw-semibold">Explore Our Services</a>
@@ -36,7 +36,7 @@ require __DIR__ . '/includes/header.php';
         <div class="carousel-item" style="background-image: url('<?= e(SITE_URL) ?>/assets/img/stock/handshake.jpg');">
             <div class="container text-center">
                 <p class="lsa-eyebrow mb-2">Global Partnerships</p>
-                <h1 class="mb-3">Trusted Partners. Real Results.</h1>
+                <h2 class="mb-3">Trusted Partners. Real Results.</h2>
                 <p class="lsa-hero-sub mb-4">A growing network of freight forwarders, brokers, and carriers worldwide.</p>
                 <div class="d-flex flex-wrap justify-content-center gap-3">
                     <a href="<?= e(SITE_URL) ?>/partnership-inquiry.php" class="btn btn-lsa-accent btn-lg fw-semibold">Become a Logistics Partner</a>
@@ -46,7 +46,7 @@ require __DIR__ . '/includes/header.php';
         <div class="carousel-item" style="background-image: url('<?= e(SITE_URL) ?>/assets/img/stock/containers-sunset.jpg');">
             <div class="container text-center">
                 <p class="lsa-eyebrow mb-2">Compliance-First Logistics</p>
-                <h1 class="mb-3">If It's Not Documented, We Don't Ship It.</h1>
+                <h2 class="mb-3">If It's Not Documented, We Don't Ship It.</h2>
                 <p class="lsa-hero-sub mb-4">Professional, transparent, and compliant &mdash; every shipment, every time.</p>
                 <div class="d-flex flex-wrap justify-content-center gap-3">
                     <a href="<?= e(SITE_URL) ?>/contact.php" class="btn btn-lsa-accent btn-lg fw-semibold">Contact Our Team</a>
@@ -69,7 +69,7 @@ require __DIR__ . '/includes/header.php';
         <div class="row align-items-center g-5">
             <div class="col-lg-6 order-lg-1">
                 <div class="lsa-about-image-wrap">
-                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/warehouse-forklift.jpg" class="lsa-about-image" alt="Warehouse team coordinating cargo">
+                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/warehouse-forklift.jpg" class="lsa-about-image" alt="Warehouse team coordinating cargo" loading="lazy" decoding="async">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-2">
@@ -182,7 +182,7 @@ require __DIR__ . '/includes/header.php';
             </div>
             <div class="col-lg-6 order-lg-2">
                 <div class="lsa-about-image-wrap lsa-accent-right">
-                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/handshake.jpg" class="lsa-about-image" alt="Let Ship Africa team building a trusted partnership">
+                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/handshake.jpg" class="lsa-about-image" alt="Let Ship Africa team building a trusted partnership" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>

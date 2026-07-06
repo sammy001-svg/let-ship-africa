@@ -16,7 +16,7 @@ require __DIR__ . '/includes/header.php';
         <div class="row align-items-center g-5">
             <div class="col-lg-6 order-lg-1">
                 <div class="lsa-about-image-wrap">
-                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/port-cranes.jpg" class="lsa-about-image" alt="Busy shipping port with cranes and cargo containers">
+                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/port-cranes.jpg" class="lsa-about-image" alt="Busy shipping port with cranes and cargo containers" loading="lazy" decoding="async">
                 </div>
             </div>
             <div class="col-lg-6 order-lg-2">
@@ -57,7 +57,7 @@ require __DIR__ . '/includes/header.php';
             </div>
             <div class="col-lg-6 order-lg-2">
                 <div class="lsa-about-image-wrap lsa-accent-right">
-                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/container-ship.jpg" class="lsa-about-image" alt="Container ship at sea">
+                    <img src="<?= e(SITE_URL) ?>/assets/img/stock/container-ship.jpg" class="lsa-about-image" alt="Container ship at sea" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>

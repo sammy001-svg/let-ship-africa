@@ -19,33 +19,32 @@ require __DIR__ . '/includes/header.php';
                 <div class="lsa-contact-panel h-100 p-4 p-lg-5">
                     <div class="lsa-contact-panel-img mb-4" style="background-image: url('<?= e(SITE_URL) ?>/assets/img/stock/port-cranes.jpg');"></div>
                     <h2 class="fw-bold text-white mb-4">Get in Touch</h2>
-                    <!-- PLACEHOLDER: replace with Let Ship Africa Inc.'s real contact details -->
                     <div class="d-flex gap-3 mb-4">
                         <div class="icon-badge icon-badge-light flex-shrink-0"><i class="bi bi-geo-alt-fill"></i></div>
                         <div>
                             <h6 class="fw-semibold text-white mb-1">Office Address</h6>
-                            <p class="lsa-text-on-dark small mb-0">Monrovia, Liberia <em>(placeholder &mdash; replace with exact address)</em></p>
+                            <p class="lsa-text-on-dark small mb-0">Neezoe Road, Opposite James David Hospital, Paynesville, Liberia</p>
                         </div>
                     </div>
                     <div class="d-flex gap-3 mb-4">
                         <div class="icon-badge icon-badge-light flex-shrink-0"><i class="bi bi-telephone-fill"></i></div>
                         <div>
                             <h6 class="fw-semibold text-white mb-1">Phone</h6>
-                            <p class="lsa-text-on-dark small mb-0">+231 000 000 000 <em>(placeholder)</em></p>
+                            <p class="lsa-text-on-dark small mb-0"><a class="link-light" href="tel:+231880835470">+231 88 083 5470</a></p>
                         </div>
                     </div>
                     <div class="d-flex gap-3 mb-4">
                         <div class="icon-badge icon-badge-light flex-shrink-0"><i class="bi bi-envelope-fill"></i></div>
                         <div>
                             <h6 class="fw-semibold text-white mb-1">Email</h6>
-                            <p class="lsa-text-on-dark small mb-0">info@letshipafrica.com <em>(placeholder)</em></p>
+                            <p class="lsa-text-on-dark small mb-0"><a class="link-light" href="mailto:info@letshipafrica.com">info@letshipafrica.com</a></p>
                         </div>
                     </div>
                     <div class="d-flex gap-3 mb-4">
                         <div class="icon-badge icon-badge-light flex-shrink-0"><i class="bi bi-clock-fill"></i></div>
                         <div>
                             <h6 class="fw-semibold text-white mb-1">Business Hours</h6>
-                            <p class="lsa-text-on-dark small mb-0">Monday &ndash; Friday, 9:00 AM &ndash; 5:00 PM GMT <em>(placeholder)</em></p>
+                            <p class="lsa-text-on-dark small mb-0">Monday &ndash; Friday, 9:00 AM &ndash; 5:00 PM GMT</p>
                         </div>
                     </div>
                     <hr class="border-secondary my-4">

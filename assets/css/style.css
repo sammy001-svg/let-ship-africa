@@ -44,6 +44,13 @@ h2.fw-bold { font-weight: 700 !important; }
 .lsa-navbar .nav-link.active {
     color: #fff;
 }
+.lsa-logo {
+    height: 48px;
+    width: auto;
+}
+.lsa-logo-footer {
+    height: 76px;
+}
 
 .btn-lsa-accent {
     background-color: var(--lsa-accent);
@@ -125,7 +132,8 @@ h2.fw-bold { font-weight: 700 !important; }
     align-items: center;
     justify-content: center;
 }
-.lsa-hero-carousel h1 {
+.lsa-hero-carousel h1,
+.lsa-hero-carousel h2 {
     font-weight: 700;
     font-size: clamp(2rem, 4.5vw, 3.25rem);
     color: #fff;

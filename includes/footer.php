@@ -2,16 +2,8 @@
     <div class="container py-5">
         <div class="row g-4">
             <div class="col-lg-4">
-                <h5 class="fw-bold text-white d-flex align-items-center gap-2">
-                    <i class="bi bi-box-seam-fill text-lsa-accent"></i> Let Ship Africa <span class="text-lsa-accent">Inc.</span>
-                </h5>
+                <img src="<?= e(SITE_URL) ?>/assets/img/logo.png" alt="Let Ship Africa Inc." class="lsa-logo lsa-logo-footer mb-2">
                 <p class="lsa-text-on-dark">Connecting Liberia to Global Markets Through Reliable Logistics and Trade Solutions.</p>
-                <!-- PLACEHOLDER: link to real social profiles once they exist -->
-                <div class="d-flex gap-2 mt-3">
-                    <a href="#" class="lsa-social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                    <a href="#" class="lsa-social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="lsa-social-icon" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
-                </div>
             </div>
             <div class="col-lg-2 col-6">
                 <h6 class="text-white fw-semibold mb-3">Quick Links</h6>
@@ -31,11 +23,10 @@
             </div>
             <div class="col-lg-4">
                 <h6 class="text-white fw-semibold mb-3">Contact</h6>
-                <!-- PLACEHOLDER: replace with real company contact details -->
                 <ul class="list-unstyled lsa-footer-links">
-                    <li><i class="bi bi-geo-alt-fill me-2"></i>Monrovia, Liberia (placeholder address)</li>
-                    <li><i class="bi bi-telephone-fill me-2"></i>+231 000 000 000 (placeholder phone)</li>
-                    <li><i class="bi bi-envelope-fill me-2"></i>info@letshipafrica.com (placeholder email)</li>
+                    <li><i class="bi bi-geo-alt-fill me-2"></i>Neezoe Road, Opposite James David Hospital, Paynesville, Liberia</li>
+                    <li><i class="bi bi-telephone-fill me-2"></i><a href="tel:+231880835470">+231 88 083 5470</a></li>
+                    <li><i class="bi bi-envelope-fill me-2"></i><a href="mailto:info@letshipafrica.com">info@letshipafrica.com</a></li>
                 </ul>
             </div>
         </div>

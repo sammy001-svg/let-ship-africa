@@ -1,6 +1,6 @@
 <?php
-$pageTitle = 'Our Services';
-$pageDescription = 'Air freight, ocean freight, cargo consolidation, import/export coordination, sourcing, procurement, and trade facilitation services.';
+$pageTitle = 'Logistics Services in Monrovia, Liberia';
+$pageDescription = 'Air freight, ocean freight, cargo consolidation, import/export coordination, sourcing, procurement, and trade facilitation services from our Monrovia, Liberia office.';
 require __DIR__ . '/includes/header.php';
 ?>
 

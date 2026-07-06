@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /process/
+Disallow: /vendor/
+Disallow: /database/
+
+Sitemap: https://lets-ship.hostanex.com/sitemap.xml
