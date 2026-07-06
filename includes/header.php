@@ -78,8 +78,11 @@ function nav_active(string $page, string $current): string
 
 <nav class="navbar navbar-expand-lg navbar-dark lsa-navbar sticky-top">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="<?= e(SITE_URL) ?>/index.php">
-            <img src="<?= e(SITE_URL) ?>/assets/img/logo.png" alt="Let Ship Africa Inc." class="lsa-logo">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="<?= e(SITE_URL) ?>/index.php">
+            <span class="lsa-logo-badge">
+                <img src="<?= e(SITE_URL) ?>/assets/img/logo.png" alt="Let Ship Africa Inc." class="lsa-logo">
+            </span>
+            <span class="lsa-brand-text fw-bold">Let Ship Africa <span class="text-lsa-accent">Inc.</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#lsaNav" aria-controls="lsaNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

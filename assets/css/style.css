@@ -45,8 +45,22 @@ h2.fw-bold { font-weight: 700 !important; }
     color: #fff;
 }
 .lsa-logo {
-    height: 48px;
+    height: 68px;
     width: auto;
+    display: block;
+}
+.lsa-logo-badge {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.lsa-brand-text {
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 700;
 }
 .lsa-logo-footer {
     height: 76px;
