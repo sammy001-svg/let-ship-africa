@@ -3,7 +3,8 @@ require_once __DIR__ . '/functions.php';
 
 $pageTitle = $pageTitle ?? SITE_NAME;
 $pageDescription = $pageDescription ?? 'Let Ship Africa Inc. — Connecting Liberia to Global Markets Through Reliable Logistics and Trade Solutions.';
-$ogImage = $ogImage ?? SITE_URL . '/assets/img/stock/port-aerial.jpg';
+$ogImage = $ogImage ?? SITE_URL . '/assets/img/og-image.jpg';
+$ogImageAlt = $ogImageAlt ?? 'Aerial view of a busy shipping port with stacked cargo containers — ' . SITE_NAME;
 $currentPage = basename($_SERVER['SCRIPT_NAME']);
 $canonicalUrl = SITE_URL . '/' . $currentPage;
 
@@ -30,10 +31,14 @@ function nav_active(string $page, string $current): string
     <meta property="og:description" content="<?= e($pageDescription) ?>">
     <meta property="og:url" content="<?= e($canonicalUrl) ?>">
     <meta property="og:image" content="<?= e($ogImage) ?>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="<?= e($ogImageAlt) ?>">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= e($pageTitle) ?> | <?= e(SITE_NAME) ?>">
     <meta name="twitter:description" content="<?= e($pageDescription) ?>">
     <meta name="twitter:image" content="<?= e($ogImage) ?>">
+    <meta name="twitter:image:alt" content="<?= e($ogImageAlt) ?>">
 
     <script type="application/ld+json">
     <?= json_encode([
