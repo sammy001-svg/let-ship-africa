@@ -1,12 +1,12 @@
 /*
-  Let Ship Africa Inc. — brand palette (placeholder, swap when brand guide is finalized)
-  Navy: deep, trustworthy, logistics/maritime feel. Gold/orange: energy, Africa, action.
+  Let Ship Africa Inc. — brand palette
+  Primary: teal, trustworthy, logistics/maritime feel. Secondary: orange, energy, Africa, action.
 */
 :root {
-    --lsa-navy: #0b2545;
-    --lsa-navy-dark: #071a33;
-    --lsa-accent: #e8871e;
-    --lsa-accent-dark: #c76f10;
+    --lsa-navy: #01929B;
+    --lsa-navy-dark: #016970;
+    --lsa-accent: #F07C04;
+    --lsa-accent-dark: #bb6103;
     --lsa-light: #f6f8fb;
     --lsa-font-heading: "Poppins", "Segoe UI", sans-serif;
     --lsa-font-body: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -36,11 +36,19 @@ h2.fw-bold { font-weight: 700 !important; }
     background-color: var(--lsa-navy);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
+.lsa-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+.lsa-navbar .nav-link:hover,
+.lsa-navbar .nav-link:focus,
+.lsa-navbar .nav-link.active {
+    color: #fff;
+}
 
 .btn-lsa-accent {
     background-color: var(--lsa-accent);
     border-color: var(--lsa-accent);
-    color: #fff;
+    color: #1c2733;
     font-family: var(--lsa-font-heading);
 }
 .btn-lsa-accent:hover,
@@ -84,7 +92,7 @@ h2.fw-bold { font-weight: 700 !important; }
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(11, 37, 69, 0.88) 0%, rgba(7, 26, 51, 0.92) 100%);
+    background: linear-gradient(135deg, rgba(1, 146, 155, 0.88) 0%, rgba(1, 105, 112, 0.92) 100%);
 }
 .lsa-hero-photo > .container {
     position: relative;
@@ -106,7 +114,7 @@ h2.fw-bold { font-weight: 700 !important; }
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(11, 37, 69, 0.88) 0%, rgba(7, 26, 51, 0.92) 100%);
+    background: linear-gradient(135deg, rgba(1, 146, 155, 0.55) 0%, rgba(1, 105, 112, 0.6) 100%);
 }
 .lsa-hero-carousel .carousel-item .container {
     position: relative;
@@ -183,7 +191,7 @@ h2.fw-bold { font-weight: 700 !important; }
     min-height: 320px;
     object-fit: cover;
     border-radius: 0.75rem;
-    box-shadow: 0 1.25rem 2.5rem rgba(11, 37, 69, 0.2);
+    box-shadow: 0 1.25rem 2.5rem rgba(1, 146, 155, 0.2);
 }
 .lsa-about-image-wrap.lsa-accent-right {
     margin: 1.25rem 1.25rem 0 0;
@@ -199,7 +207,7 @@ h2.fw-bold { font-weight: 700 !important; }
     background-position: center;
     min-height: 320px;
     border-radius: 0.75rem;
-    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.15);
+    box-shadow: 0 10px 30px rgba(1, 146, 155, 0.15);
 }
 
 /* Sections */
@@ -219,14 +227,14 @@ h2.fw-bold { font-weight: 700 !important; }
 .lsa-card {
     border: none;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 10px rgba(11, 37, 69, 0.08);
+    box-shadow: 0 2px 10px rgba(1, 146, 155, 0.08);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     height: 100%;
     background-color: #fff;
 }
 .lsa-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(11, 37, 69, 0.15);
+    box-shadow: 0 8px 24px rgba(1, 146, 155, 0.15);
 }
 .lsa-card h3, .lsa-card h5 { font-family: var(--lsa-font-heading); }
 
@@ -234,7 +242,7 @@ h2.fw-bold { font-weight: 700 !important; }
     width: 3.25rem;
     height: 3.25rem;
     border-radius: 0.65rem;
-    background-color: rgba(232, 135, 30, 0.12);
+    background-color: rgba(240, 124, 4, 0.12);
     color: var(--lsa-accent);
     display: flex;
     align-items: center;
@@ -243,7 +251,7 @@ h2.fw-bold { font-weight: 700 !important; }
     flex-shrink: 0;
 }
 .icon-badge.icon-badge-navy {
-    background-color: rgba(11, 37, 69, 0.08);
+    background-color: rgba(1, 146, 155, 0.08);
     color: var(--lsa-navy);
 }
 
@@ -254,7 +262,7 @@ h2.fw-bold { font-weight: 700 !important; }
     left: 12.5%;
     right: 12.5%;
     height: 2px;
-    background-color: rgba(11, 37, 69, 0.15);
+    background-color: rgba(1, 146, 155, 0.15);
     z-index: 0;
 }
 .lsa-timeline .lsa-step-number {
@@ -308,7 +316,7 @@ h2.fw-bold { font-weight: 700 !important; }
     left: 1.25rem;
     bottom: -1.375rem;
     background-color: #fff;
-    box-shadow: 0 4px 12px rgba(11, 37, 69, 0.2);
+    box-shadow: 0 4px 12px rgba(1, 146, 155, 0.2);
 }
 .lsa-service-card > div:last-child {
     padding-top: 2rem !important;
@@ -358,7 +366,7 @@ h2.fw-bold { font-weight: 700 !important; }
 
 /* FAQ accordion tweaks */
 .accordion-button:not(.collapsed) {
-    background-color: rgba(232, 135, 30, 0.1);
+    background-color: rgba(240, 124, 4, 0.1);
     color: var(--lsa-navy);
 }
 .accordion-button:focus { box-shadow: none; }
@@ -367,14 +375,14 @@ h2.fw-bold { font-weight: 700 !important; }
 /* Forms */
 .lsa-form-card {
     border-radius: 0.75rem;
-    box-shadow: 0 4px 20px rgba(11, 37, 69, 0.1);
+    box-shadow: 0 4px 20px rgba(1, 146, 155, 0.1);
 }
 
 /* Contact page dark info panel */
 .lsa-contact-panel {
     background: linear-gradient(135deg, var(--lsa-navy) 0%, var(--lsa-navy-dark) 100%);
     border-radius: 0.75rem;
-    box-shadow: 0 10px 30px rgba(11, 37, 69, 0.2);
+    box-shadow: 0 10px 30px rgba(1, 146, 155, 0.2);
 }
 .lsa-contact-panel-img {
     height: 160px;
@@ -402,7 +410,7 @@ h2.fw-bold { font-weight: 700 !important; }
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(11, 37, 69, 0.35);
+    box-shadow: 0 4px 16px rgba(1, 146, 155, 0.35);
     opacity: 0;
     visibility: hidden;
     transform: translateY(8px);
