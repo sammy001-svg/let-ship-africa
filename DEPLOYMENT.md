@@ -49,20 +49,31 @@ choose `database/schema.sql` from the uploaded files → **Go**.
 This only creates tables (no `CREATE DATABASE`/`USE` statements — shared-hosting DB users
 usually can't create databases, only use ones already provisioned above).
 
-**Already deployed with an older schema?** If your live database still has the old
-`quote_requests` table (from before the Shipping Inquiry / Shipment Intake Form journey
-was split into two stages), don't re-import `schema.sql` — it won't touch existing tables.
-Instead run `database/migration_shipping_inquiries.sql` once via phpMyAdmin's **SQL** tab.
-It renames `quote_requests` to `shipping_inquiries`, widens a couple of columns, and adds
-the new `shipment_intake_forms` table — all without dropping any existing submissions.
+**Already deployed before?** Don't re-import `schema.sql` — it won't touch existing tables.
+Instead run **`database/migration_catchup_plain.sql`** once via phpMyAdmin's **SQL** tab.
+It's plain, no-DELIMITER SQL (safe on every phpMyAdmin build — some hosts' SQL tabs don't
+parse the `DELIMITER` directive correctly and will reject a stored-procedure-based migration
+with "unrecognized statement" errors) that creates the `shipment_intake_forms` table if it's
+missing. Safe to run more than once. If your database still has the original `quote_requests`
+table (never migrated at all), run `database/migration_shipping_inquiries.sql` first, then
+`migration_catchup_plain.sql`.
 
-**Already have the simplified `shipment_intake_forms` table?** The intake form was later
-rebuilt to match the official Customer Shipment Intake Form (Doc No. LSA-FRM-001, v3.1) —
-shipper/consignee/importer sections, cargo declarations, a compliance checklist, and a
-staff-only internal-use section. Run `database/migration_intake_form_v2.sql` once via
-phpMyAdmin's **SQL** tab. It renames the old table to `shipment_intake_forms_legacy_v1`
-(nothing is dropped — the old/new column structures don't map cleanly, so old submissions
-are preserved as-is under that name) and creates the new, much more detailed table fresh.
+(`migration_catchup.sql` and `migration_intake_form_v2.sql` are earlier, stored-procedure- or
+DELIMITER-based versions of this same migration — kept for history, but use
+`migration_catchup_plain.sql` instead; it does the same thing without relying on phpMyAdmin
+delimiter handling.)
+
+(`migration_shipping_inquiries.sql` and `migration_intake_form_v2.sql` are the two migrations
+`migration_catchup.sql` replaces — kept in the repo for history, but use the catch-up script
+instead of running them individually.)
+
+**Upgrading from the two-stage journey?** The site was later simplified from a two-stage
+Shipping Inquiry → Shipment Intake Form flow down to a single form — "Start Your Shipping
+Inquiry" now goes straight to the full intake form. If your database still has a
+`shipping_inquiries` table, run **`database/migration_consolidate_intake.sql`** once via
+phpMyAdmin's **SQL** tab. It only renames `shipping_inquiries` to
+`shipping_inquiries_archived` (preserving any real submissions) — nothing else needs to
+change, since `shipment_intake_forms` already stands on its own.
 
 No admin account is seeded (this repo is public — a shipped password hash would be a
 permanent public target). Create your own:
@@ -127,17 +138,15 @@ block in `.htaccess` until it's ready.
 
 - [ ] Home page loads at `https://yourdomain.com` with images and the hero carousel
 - [ ] Nav links (About, Services, Partnerships, FAQ, Contact) all load
-- [ ] Submit the Contact form, the "Start Your Shipping Inquiry" form, and the
-      Partnership Inquiry form — confirm each shows a success message
-- [ ] Check phpMyAdmin — confirm the 3 submissions landed in `shipping_inquiries`,
+- [ ] Submit the Contact form, the "Start Your Shipping Inquiry" form (the full intake
+      form at `request-quote.php`), and the Partnership Inquiry form — confirm each
+      shows a success message
+- [ ] Check phpMyAdmin — confirm the 3 submissions landed in `shipment_intake_forms`,
       `partnership_inquiries`, `contact_messages`
 - [ ] Confirm both the staff notification email and the customer acknowledgement email
       arrived (once SMTP is configured)
 - [ ] Log into `/admin/login.php` with the account created in step 3, confirm the
-      dashboard shows the test submissions
-- [ ] From *Shipping Inquiries* in the admin panel, click **Send Intake Form** on the
-      test inquiry — confirm the customer email arrives with a working link to
-      `/shipment-intake-form.php`, submit it, and confirm it appears under
+      dashboard shows the test submissions, and that the intake form appears under
       *Shipment Intake Forms*
 - [ ] Visit `https://yourdomain.com/config/config.php` directly — should be blocked
       (403), same for `/database/schema.sql`, `/includes/db.php`, `/vendor/...`

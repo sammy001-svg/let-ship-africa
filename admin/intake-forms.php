@@ -68,7 +68,7 @@ require __DIR__ . '/includes/admin-header.php';
 <h1 class="h3 fw-bold mb-4">Shipment Intake Forms</h1>
 
 <?php if (!$forms): ?>
-    <p class="text-muted">No intake forms have been submitted yet. Send one from the <a href="<?= e(SITE_URL) ?>/admin/inquiries.php">Shipping Inquiries</a> page.</p>
+    <p class="text-muted">No shipping inquiries have been submitted yet.</p>
 <?php endif; ?>
 
 <?php foreach ($forms as $f):

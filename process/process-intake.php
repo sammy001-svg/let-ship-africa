@@ -2,11 +2,10 @@
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
 
-$inquiryId = (int) ($_POST['inquiry_id'] ?? 0);
-$redirectTo = SITE_URL . '/shipment-intake-form.php' . ($inquiryId > 0 ? '?inquiry_id=' . $inquiryId : '');
+$redirectTo = SITE_URL . '/request-quote.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ' . SITE_URL . '/shipment-intake-form.php');
+    header('Location: ' . $redirectTo);
     exit;
 }
 
@@ -154,22 +153,13 @@ if (!empty($errors)) {
 
 $db = getDb();
 
-$linkedInquiryId = null;
-if ($inquiryId > 0) {
-    $check = $db->prepare('SELECT id FROM shipping_inquiries WHERE id = :id');
-    $check->execute(['id' => $inquiryId]);
-    if ($check->fetch()) {
-        $linkedInquiryId = $inquiryId;
-    }
-}
-
 $cargoTypesStored = implode(',', $data['cargo_types']);
 $documentsStored = implode(',', $data['documents_available']);
 $servicesStored = implode(',', $data['services_requested']);
 
 $stmt = $db->prepare(
     'INSERT INTO shipment_intake_forms (
-        inquiry_id, shipment_mode, direction, origin_country, origin_city, purpose, purpose_other,
+        shipment_mode, direction, origin_country, origin_city, purpose, purpose_other,
         destination_country, destination_city, cargo_ready_date, requested_shipment_date,
         referral_source, referral_source_other,
         shipper_full_name, shipper_business_name, shipper_phone, shipper_whatsapp, shipper_email,
@@ -185,7 +175,7 @@ $stmt = $db->prepare(
         ack_false_declaration_penalty, ack_additional_info_request, ack_destination_requirements_vary,
         preferred_contact_method, preferred_contact_time, declaration_ack, customer_signature_name
     ) VALUES (
-        :inquiry_id, :shipment_mode, :direction, :origin_country, :origin_city, :purpose, :purpose_other,
+        :shipment_mode, :direction, :origin_country, :origin_city, :purpose, :purpose_other,
         :destination_country, :destination_city, :cargo_ready_date, :requested_shipment_date,
         :referral_source, :referral_source_other,
         :shipper_full_name, :shipper_business_name, :shipper_phone, :shipper_whatsapp, :shipper_email,
@@ -203,7 +193,6 @@ $stmt = $db->prepare(
     )'
 );
 $stmt->execute([
-    'inquiry_id' => $linkedInquiryId,
     'shipment_mode' => $data['shipment_mode'],
     'direction' => $data['direction'],
     'origin_country' => $data['origin_country'],
@@ -269,17 +258,12 @@ $stmt->execute([
     'customer_signature_name' => $data['customer_signature_name'],
 ]);
 
-if ($linkedInquiryId !== null) {
-    $db->prepare("UPDATE shipping_inquiries SET status = 'closed' WHERE id = :id AND status != 'closed'")
-        ->execute(['id' => $linkedInquiryId]);
-}
-
 $cargoTypeLabels = implode(', ', intake_form_labels('cargo_types', $data['cargo_types']));
 $documentLabels = implode(', ', intake_form_labels('documents_available', $data['documents_available']));
 $serviceLabels = implode(', ', intake_form_labels('services_requested', $data['services_requested']));
 
 $staffEmailBody = sprintf(
-    '<h3>New Shipment Intake Form%s</h3>
+    '<h3>New Shipment Intake Form</h3>
     <p><strong>Shipment:</strong> %s freight, %s &mdash; %s, %s &rarr; %s, %s</p>
     <p><strong>Shipper:</strong> %s (%s) &bull; %s &bull; %s</p>
     <p><strong>Consignee:</strong> %s &bull; %s &bull; %s, %s, %s</p>
@@ -289,7 +273,6 @@ $staffEmailBody = sprintf(
     <p><strong>Services Requested:</strong> %s</p>
     <p><strong>Special Instructions:</strong><br>%s</p>
     <p>Full details are in the admin panel under Shipment Intake Forms.</p>',
-    $linkedInquiryId !== null ? ' (linked to inquiry #' . $linkedInquiryId . ')' : '',
     e(ucfirst($data['shipment_mode'])), e($data['direction']), e($data['origin_city']), e($data['origin_country']), e($data['destination_city']), e($data['destination_country']),
     e($data['shipper_full_name']), e($data['shipper_business_name'] ?: 'Individual'), e($data['shipper_email']), e($data['shipper_phone']),
     e($data['consignee_full_name']), e($data['consignee_phone']), e($data['consignee_city']), e($data['consignee_state'] ?: ''), e($data['consignee_country']),
@@ -311,6 +294,6 @@ $customerEmailBody = sprintf(
 );
 send_customer_email($data['shipper_email'], $data['shipper_full_name'], 'Intake Form Received — Your Quotation Is Being Prepared — ' . SITE_NAME, $customerEmailBody);
 
-flash_set('success', 'Thank you, ' . $data['shipper_full_name'] . '. Your intake form has been received. Our team will review it and prepare your customized quotation.');
-header('Location: ' . SITE_URL . '/shipment-intake-form.php');
+flash_set('success', 'Thank you, ' . $data['shipper_full_name'] . '. Your shipping inquiry has been received. Our team will review it and prepare your customized quotation.');
+header('Location: ' . $redirectTo);
 exit;

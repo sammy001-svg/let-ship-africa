@@ -2,16 +2,13 @@
 require_once __DIR__ . '/includes/auth-check.php';
 
 $db = getDb();
-$inquiryCount = (int) $db->query("SELECT COUNT(*) FROM shipping_inquiries")->fetchColumn();
 $intakeCount = (int) $db->query("SELECT COUNT(*) FROM shipment_intake_forms")->fetchColumn();
 $partnershipCount = (int) $db->query("SELECT COUNT(*) FROM partnership_inquiries")->fetchColumn();
 $messageCount = (int) $db->query("SELECT COUNT(*) FROM contact_messages")->fetchColumn();
-$newInquiryCount = (int) $db->query("SELECT COUNT(*) FROM shipping_inquiries WHERE status = 'new'")->fetchColumn();
 $newIntakeCount = (int) $db->query("SELECT COUNT(*) FROM shipment_intake_forms WHERE status = 'new'")->fetchColumn();
 $newPartnershipCount = (int) $db->query("SELECT COUNT(*) FROM partnership_inquiries WHERE status = 'new'")->fetchColumn();
 $newMessageCount = (int) $db->query("SELECT COUNT(*) FROM contact_messages WHERE status = 'new'")->fetchColumn();
 
-$recentInquiries = $db->query("SELECT id, full_name, status, created_at FROM shipping_inquiries ORDER BY created_at DESC LIMIT 5")->fetchAll();
 $recentIntakeForms = $db->query("SELECT id, shipper_full_name, shipment_mode, status, created_at FROM shipment_intake_forms ORDER BY created_at DESC LIMIT 5")->fetchAll();
 $recentPartnerships = $db->query("SELECT id, organization_name, status, created_at FROM partnership_inquiries ORDER BY created_at DESC LIMIT 5")->fetchAll();
 $recentMessages = $db->query("SELECT id, full_name, subject, status, created_at FROM contact_messages ORDER BY created_at DESC LIMIT 5")->fetchAll();
@@ -24,28 +21,21 @@ require __DIR__ . '/includes/admin-header.php';
 <h1 class="h3 fw-bold mb-4">Dashboard</h1>
 
 <div class="row g-4 mb-4">
-    <div class="col-md-6 col-lg-3">
-        <div class="lsa-card p-4">
-            <p class="text-muted mb-1">Shipping Inquiries</p>
-            <h2 class="fw-bold mb-0"><?= $inquiryCount ?></h2>
-            <span class="badge bg-lsa-navy mt-2"><?= $newInquiryCount ?> new</span>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4">
         <div class="lsa-card p-4">
             <p class="text-muted mb-1">Shipment Intake Forms</p>
             <h2 class="fw-bold mb-0"><?= $intakeCount ?></h2>
             <span class="badge bg-lsa-navy mt-2"><?= $newIntakeCount ?> new</span>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4">
         <div class="lsa-card p-4">
             <p class="text-muted mb-1">Partnership Inquiries</p>
             <h2 class="fw-bold mb-0"><?= $partnershipCount ?></h2>
             <span class="badge bg-lsa-navy mt-2"><?= $newPartnershipCount ?> new</span>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-4">
         <div class="lsa-card p-4">
             <p class="text-muted mb-1">Contact Messages</p>
             <h2 class="fw-bold mb-0"><?= $messageCount ?></h2>
@@ -55,23 +45,10 @@ require __DIR__ . '/includes/admin-header.php';
 </div>
 
 <div class="row g-4">
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-4 col-md-6">
         <div class="lsa-card p-4">
             <h6 class="fw-bold mb-3">Recent Shipping Inquiries</h6>
-            <?php if (!$recentInquiries): ?><p class="text-muted small mb-0">No inquiries yet.</p><?php endif; ?>
-            <?php foreach ($recentInquiries as $q): ?>
-                <div class="d-flex justify-content-between border-bottom py-2 small">
-                    <span><?= e($q['full_name']) ?></span>
-                    <span class="badge bg-secondary"><?= e($q['status']) ?></span>
-                </div>
-            <?php endforeach; ?>
-            <a href="<?= e(SITE_URL) ?>/admin/inquiries.php" class="small d-block mt-3">View all &rarr;</a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="lsa-card p-4">
-            <h6 class="fw-bold mb-3">Recent Intake Forms</h6>
-            <?php if (!$recentIntakeForms): ?><p class="text-muted small mb-0">No intake forms yet.</p><?php endif; ?>
+            <?php if (!$recentIntakeForms): ?><p class="text-muted small mb-0">No inquiries yet.</p><?php endif; ?>
             <?php foreach ($recentIntakeForms as $f): ?>
                 <div class="d-flex justify-content-between border-bottom py-2 small">
                     <span><?= e($f['shipper_full_name']) ?> &mdash; <?= e(ucfirst($f['shipment_mode'])) ?></span>
@@ -81,7 +58,7 @@ require __DIR__ . '/includes/admin-header.php';
             <a href="<?= e(SITE_URL) ?>/admin/intake-forms.php" class="small d-block mt-3">View all &rarr;</a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-4 col-md-6">
         <div class="lsa-card p-4">
             <h6 class="fw-bold mb-3">Recent Partnership Inquiries</h6>
             <?php if (!$recentPartnerships): ?><p class="text-muted small mb-0">No partnership inquiries yet.</p><?php endif; ?>
@@ -94,7 +71,7 @@ require __DIR__ . '/includes/admin-header.php';
             <a href="<?= e(SITE_URL) ?>/admin/partnerships.php" class="small d-block mt-3">View all &rarr;</a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-4 col-md-6">
         <div class="lsa-card p-4">
             <h6 class="fw-bold mb-3">Recent Contact Messages</h6>
             <?php if (!$recentMessages): ?><p class="text-muted small mb-0">No messages yet.</p><?php endif; ?>

@@ -32,9 +32,6 @@ $activeNav = $activeNav ?? '';
                     <a class="nav-link text-light<?= $activeNav === 'dashboard' ? ' fw-bold text-lsa-accent' : '' ?>" href="<?= e(SITE_URL) ?>/admin/dashboard.php">Dashboard</a>
                 </li>
                 <li class="nav-item mb-1">
-                    <a class="nav-link text-light<?= $activeNav === 'inquiries' ? ' fw-bold text-lsa-accent' : '' ?>" href="<?= e(SITE_URL) ?>/admin/inquiries.php">Shipping Inquiries</a>
-                </li>
-                <li class="nav-item mb-1">
                     <a class="nav-link text-light<?= $activeNav === 'intake-forms' ? ' fw-bold text-lsa-accent' : '' ?>" href="<?= e(SITE_URL) ?>/admin/intake-forms.php">Shipment Intake Forms</a>
                 </li>
                 <li class="nav-item mb-1">

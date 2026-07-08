@@ -1,33 +1,28 @@
--- Let Ship Africa Inc. website database
+-- Plain-SQL catch-up migration: creates the shipment_intake_forms table
+-- (the full Customer Shipment Intake Form, Doc No. LSA-FRM-001, v3.1) if
+-- it doesn't already exist.
 --
--- This file only creates tables — it deliberately does NOT run CREATE DATABASE
--- or USE, because shared-hosting DB users (e.g. on cPanel) usually don't have
--- privileges to create a database and are scoped to one already provisioned
--- via the host's control panel. Create/select the database first, then import
--- this file into it:
---   Local (XAMPP):  mysql -u root -e "CREATE DATABASE IF NOT EXISTS letshipafrica CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
---                    mysql -u root letshipafrica < schema.sql
---   cPanel:          create the DB via "MySQL Databases", then phpMyAdmin -> select it -> Import -> this file.
+-- This is a simpler, stored-procedure-free version of migration_catchup.sql
+-- for hosts whose phpMyAdmin doesn't parse the DELIMITER directive
+-- correctly (splits routine bodies on internal semicolons and rejects them
+-- as "unrecognized statement"). Every statement here is a plain top-level
+-- statement phpMyAdmin's SQL tab handles natively — no DELIMITER needed.
+--
+-- Safe to run even if a broken procedure was left behind by a previous
+-- failed attempt (the first line cleans that up). Safe to run more than
+-- once — CREATE TABLE IF NOT EXISTS is a no-op if the table is already
+-- there. Assumes shipping_inquiries already exists (it does, per the error
+-- you shared); if for some reason it doesn't, run migration_shipping_inquiries.sql
+-- first.
+--
+-- Run this once, in phpMyAdmin -> your database -> SQL tab -> paste and Go.
 
-CREATE TABLE IF NOT EXISTS admin_users (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(64) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
-    full_name VARCHAR(150) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+DROP PROCEDURE IF EXISTS lsa_migrate_catchup;
 
--- No admin account is seeded here on purpose (this repo is public — a shipped
--- password hash would be a public, permanent target). Create your own admin
--- account after importing this schema; see README.md "Create your admin account".
-
--- The official Customer Shipment Intake Form (Doc No. LSA-FRM-001, v3.1) —
--- the site's single, direct "Start Your Shipping Inquiry" entry point.
--- Sections below mirror the paper/PDF form.
 CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    inquiry_id INT UNSIGNED NULL,
 
-    -- Section 1 - Shipment Information
     shipment_mode ENUM('air', 'sea') NOT NULL,
     direction ENUM('export', 'import') NOT NULL,
     origin_country VARCHAR(100) NOT NULL,
@@ -41,7 +36,6 @@ CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     referral_source ENUM('facebook', 'whatsapp', 'referral', 'google', 'website', 'existing_customer', 'other') NULL,
     referral_source_other VARCHAR(255) NULL,
 
-    -- Section 2 - Customer / Shipper Information
     shipper_full_name VARCHAR(150) NOT NULL,
     shipper_business_name VARCHAR(150) NULL,
     shipper_phone VARCHAR(50) NOT NULL,
@@ -53,7 +47,6 @@ CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     shipper_country VARCHAR(100) NOT NULL,
     shipper_id_number VARCHAR(100) NULL,
 
-    -- Section 3 - Consignee Information (Receiver)
     consignee_full_name VARCHAR(150) NOT NULL,
     consignee_business_name VARCHAR(150) NULL,
     consignee_phone VARCHAR(50) NOT NULL,
@@ -65,7 +58,6 @@ CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     consignee_postal_code VARCHAR(30) NULL,
     consignee_country VARCHAR(100) NOT NULL,
 
-    -- Section 4 - Importer of Record Information
     consignee_is_importer ENUM('yes', 'no') NOT NULL DEFAULT 'yes',
     importer_full_name VARCHAR(150) NULL,
     importer_business_name VARCHAR(150) NULL,
@@ -74,7 +66,6 @@ CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     importer_tax_id VARCHAR(100) NULL,
     importer_country VARCHAR(100) NULL,
 
-    -- Section 5 - Cargo Information
     cargo_types TEXT NOT NULL,
     cargo_type_other VARCHAR(255) NULL,
     package_count INT UNSIGNED NULL,
@@ -84,18 +75,14 @@ CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     has_dangerous_goods ENUM('yes', 'no') NOT NULL DEFAULT 'no',
     dangerous_goods_details TEXT NULL,
 
-    -- Section 6 - Documentation Available
     documents_available TEXT NULL,
     documents_other VARCHAR(255) NULL,
 
-    -- Section 7 - Optional Services Requested
     services_requested TEXT NULL,
     services_other VARCHAR(255) NULL,
 
-    -- Section 8 - Special Instructions
     special_instructions TEXT NULL,
 
-    -- Section 9 - Customer Compliance Checklist + contact preference
     ack_accurate_declaration TINYINT(1) NOT NULL DEFAULT 0,
     ack_additional_docs TINYINT(1) NOT NULL DEFAULT 0,
     ack_inspections TINYINT(1) NOT NULL DEFAULT 0,
@@ -106,11 +93,9 @@ CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     preferred_contact_method ENUM('whatsapp', 'phone', 'email') NOT NULL DEFAULT 'whatsapp',
     preferred_contact_time VARCHAR(150) NULL,
 
-    -- Section 10 - Customer Declaration
     declaration_ack TINYINT(1) NOT NULL DEFAULT 0,
     customer_signature_name VARCHAR(150) NOT NULL,
 
-    -- Section 11 - Let Ship Africa Inc. Internal Use Only (staff-editable)
     customer_number VARCHAR(50) NULL,
     shipment_reference VARCHAR(50) NULL,
     received_by VARCHAR(150) NULL,
@@ -124,29 +109,6 @@ CREATE TABLE IF NOT EXISTS shipment_intake_forms (
     authorized_by_date DATE NULL,
 
     status ENUM('new', 'reviewed', 'quoted', 'closed') NOT NULL DEFAULT 'new',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS partnership_inquiries (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    organization_name VARCHAR(150) NOT NULL,
-    contact_name VARCHAR(150) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    phone VARCHAR(50) NOT NULL,
-    country VARCHAR(100) NOT NULL,
-    partner_type VARCHAR(150) NOT NULL,
-    message TEXT NULL,
-    status ENUM('new', 'contacted', 'closed') NOT NULL DEFAULT 'new',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
-
-CREATE TABLE IF NOT EXISTS contact_messages (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR(150) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    phone VARCHAR(50) NULL,
-    subject VARCHAR(200) NOT NULL,
-    message TEXT NOT NULL,
-    status ENUM('new', 'read', 'closed') NOT NULL DEFAULT 'new',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_intake_inquiry FOREIGN KEY (inquiry_id) REFERENCES shipping_inquiries(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;

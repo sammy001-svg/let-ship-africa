@@ -1,0 +1,21 @@
+-- Consolidation migration: retires the two-stage journey (Shipping Inquiry
+-- -> Shipment Intake Form) in favor of a single form. "Start Your Shipping
+-- Inquiry" now goes straight to the full Customer Shipment Intake Form
+-- (Doc No. LSA-FRM-001, v3.1) at request-quote.php.
+--
+-- This only archives the shipping_inquiries table — it does not touch
+-- shipment_intake_forms at all. Its inquiry_id column and foreign key are
+-- left in place (new submissions simply leave it NULL going forward); this
+-- avoids a riskier FOREIGN KEY-drop step for something that costs nothing
+-- to leave unused. Renaming a table that a live foreign key points to is
+-- safe in MySQL/MariaDB — the constraint automatically follows the rename
+-- (verified locally before sending you this).
+--
+-- Plain SQL only, no DELIMITER/stored procedures (some phpMyAdmin builds
+-- don't parse DELIMITER correctly — see the earlier migration issue).
+-- Safe to run once. If you get "table doesn't exist," it's already been
+-- archived (or never existed) and there's nothing left to do.
+--
+-- Run this once, in phpMyAdmin -> your database -> SQL tab -> paste and Go.
+
+RENAME TABLE shipping_inquiries TO shipping_inquiries_archived;

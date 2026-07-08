@@ -6,6 +6,5 @@ Disallow: /includes/
 Disallow: /process/
 Disallow: /vendor/
 Disallow: /database/
-Disallow: /shipment-intake-form.php
 
 Sitemap: https://lets-ship.hostanex.com/sitemap.xml
