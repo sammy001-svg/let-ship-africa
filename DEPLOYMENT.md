@@ -56,6 +56,14 @@ Instead run `database/migration_shipping_inquiries.sql` once via phpMyAdmin's **
 It renames `quote_requests` to `shipping_inquiries`, widens a couple of columns, and adds
 the new `shipment_intake_forms` table — all without dropping any existing submissions.
 
+**Already have the simplified `shipment_intake_forms` table?** The intake form was later
+rebuilt to match the official Customer Shipment Intake Form (Doc No. LSA-FRM-001, v3.1) —
+shipper/consignee/importer sections, cargo declarations, a compliance checklist, and a
+staff-only internal-use section. Run `database/migration_intake_form_v2.sql` once via
+phpMyAdmin's **SQL** tab. It renames the old table to `shipment_intake_forms_legacy_v1`
+(nothing is dropped — the old/new column structures don't map cleanly, so old submissions
+are preserved as-is under that name) and creates the new, much more detailed table fresh.
+
 No admin account is seeded (this repo is public — a shipped password hash would be a
 permanent public target). Create your own:
 

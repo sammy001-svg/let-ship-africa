@@ -12,7 +12,7 @@ $newPartnershipCount = (int) $db->query("SELECT COUNT(*) FROM partnership_inquir
 $newMessageCount = (int) $db->query("SELECT COUNT(*) FROM contact_messages WHERE status = 'new'")->fetchColumn();
 
 $recentInquiries = $db->query("SELECT id, full_name, status, created_at FROM shipping_inquiries ORDER BY created_at DESC LIMIT 5")->fetchAll();
-$recentIntakeForms = $db->query("SELECT id, full_name, shipment_type, status, created_at FROM shipment_intake_forms ORDER BY created_at DESC LIMIT 5")->fetchAll();
+$recentIntakeForms = $db->query("SELECT id, shipper_full_name, shipment_mode, status, created_at FROM shipment_intake_forms ORDER BY created_at DESC LIMIT 5")->fetchAll();
 $recentPartnerships = $db->query("SELECT id, organization_name, status, created_at FROM partnership_inquiries ORDER BY created_at DESC LIMIT 5")->fetchAll();
 $recentMessages = $db->query("SELECT id, full_name, subject, status, created_at FROM contact_messages ORDER BY created_at DESC LIMIT 5")->fetchAll();
 
@@ -74,7 +74,7 @@ require __DIR__ . '/includes/admin-header.php';
             <?php if (!$recentIntakeForms): ?><p class="text-muted small mb-0">No intake forms yet.</p><?php endif; ?>
             <?php foreach ($recentIntakeForms as $f): ?>
                 <div class="d-flex justify-content-between border-bottom py-2 small">
-                    <span><?= e($f['full_name']) ?> &mdash; <?= e($f['shipment_type']) ?></span>
+                    <span><?= e($f['shipper_full_name']) ?> &mdash; <?= e(ucfirst($f['shipment_mode'])) ?></span>
                     <span class="badge bg-secondary"><?= e($f['status']) ?></span>
                 </div>
             <?php endforeach; ?>
