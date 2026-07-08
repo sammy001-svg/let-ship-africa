@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Admin Login | <?= e(SITE_NAME) ?></title>
     <link rel="icon" type="image/png" href="<?= e(SITE_URL) ?>/assets/img/favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= e(SITE_URL) ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?= e(SITE_URL) ?>/assets/css/style.css?v=<?= filemtime(__DIR__ . '/../assets/css/style.css') ?>">
 </head>
 <body class="bg-lsa-navy min-vh-100 d-flex align-items-center">
 <div class="container">
