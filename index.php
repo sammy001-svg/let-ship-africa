@@ -71,7 +71,7 @@ require __DIR__ . '/includes/header.php';
                 <div class="icon-badge icon-badge-navy flex-shrink-0"><i class="bi bi-geo-alt-fill"></i></div>
                 <div>
                     <span class="fw-semibold d-block small">Real Office, Real Address</span>
-                    <span class="text-muted small">Paynesville, Liberia &mdash; not a P.O. box.</span>
+                    <span class="text-muted small">Paynesville, Liberia</span>
                 </div>
             </div>
             <div class="col-6 col-md-3 d-flex align-items-start gap-3">
