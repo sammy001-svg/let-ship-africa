@@ -110,3 +110,49 @@ function send_customer_email(string $toEmail, string $toName, string $subject, s
 {
     return send_email($toEmail, $toName, $subject, $bodyHtml);
 }
+
+/**
+ * Value => label option lists for the Customer Shipment Intake Form
+ * (Doc No. LSA-FRM-001). Shared by the public form, the notification/
+ * confirmation emails, and the admin intake-forms view so the three never
+ * drift out of sync.
+ */
+function intake_form_options(): array
+{
+    return [
+        'purpose' => [
+            'personal' => 'Personal Use', 'commercial' => 'Commercial Use',
+            'gift' => 'Gift / Family Support', 'humanitarian' => 'Humanitarian Aid', 'other' => 'Other',
+        ],
+        'referral_source' => [
+            'facebook' => 'Facebook', 'whatsapp' => 'WhatsApp', 'referral' => 'Referral',
+            'google' => 'Google Search', 'website' => 'Website', 'existing_customer' => 'Existing Customer', 'other' => 'Other',
+        ],
+        'cargo_types' => [
+            'food' => 'Food Products', 'clothing' => 'Clothing', 'cosmetics' => 'Cosmetics',
+            'personal_effects' => 'Personal Effects', 'commercial_cargo' => 'Commercial Cargo',
+            'general_merchandise' => 'General Merchandise', 'agricultural_products' => 'Agricultural Products', 'other' => 'Other',
+        ],
+        'documents_available' => [
+            'commercial_invoice' => 'Commercial Invoice', 'packing_list' => 'Packing List',
+            'export_permit' => 'Export Permit', 'health_certificate' => 'Health Certificate',
+            'phytosanitary_certificate' => 'Phytosanitary Certificate', 'certificate_of_origin' => 'Certificate of Origin',
+            'product_labels' => 'Product Labels', 'product_photos' => 'Product Photos', 'other' => 'Other',
+        ],
+        'services_requested' => [
+            'customs_brokerage' => 'Customs Brokerage Assistance', 'import_compliance' => 'Import Compliance Assistance',
+            'fda_compliance' => 'FDA Compliance Assistance', 'warehouse_receiving' => 'Warehouse Receiving',
+            'cargo_insurance' => 'Cargo Insurance', 'documentation_assistance' => 'Documentation Assistance',
+            'local_delivery' => 'Local Delivery', 'export_processing_support' => 'Export Processing Support',
+            'product_sourcing' => 'Product Sourcing Assistance', 'cargo_collection' => 'Cargo Collection within Liberia',
+            'cargo_packaging' => 'Cargo Packaging', 'customs_documentation' => 'Customs Documentation', 'other' => 'Other',
+        ],
+    ];
+}
+
+/** Maps a list of option value-slugs to their display labels for a given intake form field. */
+function intake_form_labels(string $field, array $values): array
+{
+    $options = intake_form_options()[$field] ?? [];
+    return array_map(fn($v) => $options[$v] ?? $v, $values);
+}
