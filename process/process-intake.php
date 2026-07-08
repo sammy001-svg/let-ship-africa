@@ -2,16 +2,16 @@
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
 
-$redirectTo = SITE_URL . '/request-quote.php';
+$inquiryId = (int) ($_POST['inquiry_id'] ?? 0);
+$redirectTo = SITE_URL . '/shipment-intake-form.php' . ($inquiryId > 0 ? '?inquiry_id=' . $inquiryId : '');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ' . $redirectTo);
+    header('Location: ' . SITE_URL . '/shipment-intake-form.php');
     exit;
 }
 
 if (is_spam_submission()) {
-    // Silently "succeed" so bots gain no signal, without writing anything.
-    flash_set('success', 'Thank you. Your quote request has been received. Our team will contact you shortly.');
+    flash_set('success', 'Thank you. Your intake form has been received. Our team will prepare your quotation.');
     header('Location: ' . $redirectTo);
     exit;
 }
@@ -52,12 +52,24 @@ if (!empty($errors)) {
 }
 
 $db = getDb();
+
+// Confirm the inquiry actually exists before linking to it.
+$linkedInquiryId = null;
+if ($inquiryId > 0) {
+    $check = $db->prepare('SELECT id FROM shipping_inquiries WHERE id = :id');
+    $check->execute(['id' => $inquiryId]);
+    if ($check->fetch()) {
+        $linkedInquiryId = $inquiryId;
+    }
+}
+
 $stmt = $db->prepare(
-    'INSERT INTO quote_requests
-        (full_name, email, phone, company, shipment_type, origin_country, destination_country, cargo_description, weight, dimensions, additional_notes)
-     VALUES (:full_name, :email, :phone, :company, :shipment_type, :origin_country, :destination_country, :cargo_description, :weight, :dimensions, :additional_notes)'
+    'INSERT INTO shipment_intake_forms
+        (inquiry_id, full_name, email, phone, company, shipment_type, origin_country, destination_country, cargo_description, weight, dimensions, additional_notes)
+     VALUES (:inquiry_id, :full_name, :email, :phone, :company, :shipment_type, :origin_country, :destination_country, :cargo_description, :weight, :dimensions, :additional_notes)'
 );
 $stmt->execute([
+    'inquiry_id' => $linkedInquiryId,
     'full_name' => $fullName,
     'email' => $email,
     'phone' => $phone,
@@ -71,21 +83,37 @@ $stmt->execute([
     'additional_notes' => $additionalNotes !== '' ? $additionalNotes : null,
 ]);
 
-$emailBody = sprintf(
-    '<h3>New Shipping Quote Request</h3>
+if ($linkedInquiryId !== null) {
+    $db->prepare("UPDATE shipping_inquiries SET status = 'closed' WHERE id = :id AND status != 'closed'")
+        ->execute(['id' => $linkedInquiryId]);
+}
+
+$staffEmailBody = sprintf(
+    '<h3>New Shipment Intake Form%s</h3>
     <p><strong>Name:</strong> %s<br><strong>Email:</strong> %s<br><strong>Phone:</strong> %s<br><strong>Company:</strong> %s</p>
     <p><strong>Shipment Type:</strong> %s<br><strong>Origin:</strong> %s<br><strong>Destination:</strong> %s</p>
     <p><strong>Cargo Description:</strong><br>%s</p>
     <p><strong>Weight:</strong> %s &nbsp; <strong>Dimensions:</strong> %s</p>
     <p><strong>Additional Notes:</strong><br>%s</p>',
+    $linkedInquiryId !== null ? ' (linked to inquiry #' . $linkedInquiryId . ')' : '',
     e($fullName), e($email), e($phone), e($company ?: 'N/A'),
     e($shipmentType), e($originCountry), e($destinationCountry),
     nl2br(e($cargoDescription)),
     e($weight ?: 'N/A'), e($dimensions ?: 'N/A'),
     nl2br(e($additionalNotes ?: 'N/A'))
 );
-send_notification_email('New Shipping Quote Request from ' . $fullName, $emailBody);
+send_notification_email('New Shipment Intake Form from ' . $fullName, $staffEmailBody);
 
-flash_set('success', 'Thank you, ' . $fullName . '. Your quote request has been received. Our team will contact you shortly.');
-header('Location: ' . $redirectTo);
+$customerEmailBody = sprintf(
+    '<p>Hi %s,</p>
+    <p>Thank you for completing your Shipment Intake Form. Our team is now reviewing the details you provided and will
+    prepare your customized quotation.</p>
+    <p>If you have any questions in the meantime, reply to this email or reach us on WhatsApp at +231 88 083 5470.</p>
+    <p>Best regards,<br>%s</p>',
+    e($fullName), e(SITE_NAME)
+);
+send_customer_email($email, $fullName, 'Intake Form Received — Your Quotation Is Being Prepared — ' . SITE_NAME, $customerEmailBody);
+
+flash_set('success', 'Thank you, ' . $fullName . '. Your intake form has been received. Our team will review it and prepare your customized quotation.');
+header('Location: ' . SITE_URL . '/shipment-intake-form.php');
 exit;

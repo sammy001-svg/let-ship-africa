@@ -152,7 +152,7 @@ require __DIR__ . '/includes/header.php';
             procurement, or trade facilitation, Let Ship Africa Inc. is ready to help.
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Request a Shipping Quote</a>
+            <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Start Your Shipping Inquiry</a>
             <a href="<?= e(SITE_URL) ?>/contact.php" class="btn btn-lsa-outline btn-lg fw-semibold">Speak With Our Logistics Team</a>
         </div>
     </div>

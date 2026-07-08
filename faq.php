@@ -43,9 +43,9 @@ function faq_accordion(string $sectionId, array $items): void
             ['I don\'t know whether to choose Air Freight or Sea Freight. Can you advise me?',
                 '<p class="mb-0">Absolutely. The best shipping method depends on several factors, including the type of cargo, weight, volume, urgency, destination, and budget. After reviewing your shipment details, our logistics team will recommend the most suitable transportation option for your specific needs.</p>'],
             ['What information should I prepare before requesting a quotation?',
-                '<p>To provide an accurate quotation, we recommend having the following information available:</p>
+                '<p>Getting started is simple &mdash; your initial Shipping Inquiry just needs a brief description of what you\'d like to ship. Once our team reaches out, we\'ll send you our Shipment Intake Form to capture the full details, including:</p>
                 <ul class="mb-2"><li>Description of the goods</li><li>Quantity</li><li>Estimated weight</li><li>Estimated dimensions (if available)</li><li>Country of origin</li><li>Destination country</li><li>Preferred shipping method (if known)</li><li>Any additional services required</li></ul>
-                <p class="mb-0">The more information you provide, the more accurate your quotation will be.</p>'],
+                <p class="mb-0">Having this information ready in advance will help your intake form go faster, but it isn\'t required to start.</p>'],
             ['Can Let Ship Africa help me find suppliers?',
                 '<p class="mb-0">Yes. If you have not yet identified a supplier, we offer sourcing and procurement support in selected international markets. We can assist with identifying potential suppliers, communicating with vendors, and coordinating purchasing activities.</p>'],
         ]); ?>
@@ -69,7 +69,7 @@ function faq_accordion(string $sectionId, array $items): void
             ['Why can\'t you give me a shipping price immediately?',
                 '<p class="mb-0">Providing an accurate quotation requires understanding your shipment requirements. Quoting without sufficient information could result in incorrect pricing or unexpected costs later. Our goal is to provide clear, transparent, and accurate quotations based on your actual shipment.</p>'],
             ['Is requesting a quotation free?',
-                '<p class="mb-0">Yes. Submitting a quotation request through our website or contacting our team does not obligate you to book a shipment. We encourage customers to request quotations so they can make informed decisions before shipping.</p>'],
+                '<p class="mb-0">Yes. Starting a shipping inquiry through our website or contacting our team does not obligate you to book a shipment. We encourage customers to reach out so they can make informed decisions before shipping.</p>'],
             ['How long is my quotation valid?',
                 '<p class="mb-0">The validity period of your quotation will be stated in the quotation itself. Because freight rates, fuel costs, airline charges, shipping line charges, and other logistics costs may change over time, quotations may be subject to expiration and revision.</p>'],
         ]); ?>
@@ -168,7 +168,7 @@ function faq_accordion(string $sectionId, array $items): void
         <h2 class="fw-bold mb-3">Still Have Questions?</h2>
         <p class="lsa-text-on-dark mb-4">Our team is ready to walk you through your specific shipment, step by step.</p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Request a Shipping Quote</a>
+            <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Start Your Shipping Inquiry</a>
             <a href="<?= e(SITE_URL) ?>/contact.php" class="btn btn-lsa-outline btn-lg fw-semibold">Contact Our Team</a>
         </div>
     </div>

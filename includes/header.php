@@ -82,7 +82,7 @@ function nav_active(string $page, string $current): string
             <span class="lsa-logo-badge">
                 <img src="<?= e(SITE_URL) ?>/assets/img/logo.png" alt="Let Ship Africa Inc." class="lsa-logo">
             </span>
-            <span class="lsa-brand-text fw-bold">Let Ship Africa <span class="text-lsa-accent">Inc.</span></span>
+            <span class="lsa-brand-text fw-bold d-none d-sm-inline-block">Let Ship Africa <span class="text-lsa-accent">Inc.</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#lsaNav" aria-controls="lsaNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -96,7 +96,7 @@ function nav_active(string $page, string $current): string
                 <li class="nav-item"><a class="nav-link<?= nav_active('faq.php', $currentPage) ?>" href="<?= e(SITE_URL) ?>/faq.php">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link<?= nav_active('contact.php', $currentPage) ?>" href="<?= e(SITE_URL) ?>/contact.php">Contact</a></li>
                 <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-                    <a class="btn btn-lsa-accent fw-semibold" href="<?= e(SITE_URL) ?>/request-quote.php">Request a Quote</a>
+                    <a class="btn btn-lsa-accent fw-semibold" href="<?= e(SITE_URL) ?>/request-quote.php">Start Your Shipping Inquiry</a>
                 </li>
             </ul>
         </div>

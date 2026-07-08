@@ -16,9 +16,9 @@ require __DIR__ . '/includes/header.php';
             <div class="container text-center">
                 <p class="lsa-eyebrow mb-2">Liberia &bull; International Logistics</p>
                 <h1 class="mb-3">Connecting Liberia to Global Markets</h1>
-                <p class="lsa-hero-sub mb-4">Reliable freight, trade facilitation, and sourcing &mdash; done right.</p>
+                <p class="lsa-hero-sub mb-4">Your trusted guide through freight, trade facilitation, and sourcing &mdash; from first inquiry to final delivery.</p>
                 <div class="d-flex flex-wrap justify-content-center gap-3">
-                    <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Request a Shipping Quote</a>
+                    <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Start Your Shipping Inquiry</a>
                     <a href="<?= e(SITE_URL) ?>/partnership-inquiry.php" class="btn btn-lsa-outline btn-lg fw-semibold">Become a Logistics Partner</a>
                 </div>
             </div>
@@ -64,6 +64,41 @@ require __DIR__ . '/includes/header.php';
     </button>
 </div>
 
+<section class="lsa-trust-bar py-4">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-md-3 d-flex align-items-start gap-3">
+                <div class="icon-badge icon-badge-navy flex-shrink-0"><i class="bi bi-geo-alt-fill"></i></div>
+                <div>
+                    <span class="fw-semibold d-block small">Real Office, Real Address</span>
+                    <span class="text-muted small">Paynesville, Liberia &mdash; not a P.O. box.</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 d-flex align-items-start gap-3">
+                <div class="icon-badge icon-badge-navy flex-shrink-0"><i class="bi bi-shield-check"></i></div>
+                <div>
+                    <span class="fw-semibold d-block small">Compliance-First</span>
+                    <span class="text-muted small">If it's not properly documented, we do not ship it.</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 d-flex align-items-start gap-3">
+                <div class="icon-badge icon-badge-navy flex-shrink-0"><i class="bi bi-headset"></i></div>
+                <div>
+                    <span class="fw-semibold d-block small">Direct Access to Our Team</span>
+                    <span class="text-muted small">Phone, WhatsApp, or email &mdash; no call centers.</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 d-flex align-items-start gap-3">
+                <div class="icon-badge icon-badge-navy flex-shrink-0"><i class="bi bi-signpost-split"></i></div>
+                <div>
+                    <span class="fw-semibold d-block small">Guided, Transparent Process</span>
+                    <span class="text-muted small">You'll know what's happening at every step.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="lsa-section">
     <div class="container">
         <div class="row align-items-center g-5">
@@ -76,12 +111,14 @@ require __DIR__ . '/includes/header.php';
                 <p class="lsa-eyebrow mb-2">Who We Are</p>
                 <h2 class="fw-bold mb-3">About Let Ship Africa Inc.</h2>
                 <p>
-                    Let Ship Africa Inc. is a Liberia-based logistics and trade facilitation company dedicated to helping
-                    businesses, organizations, entrepreneurs, and individuals participate confidently in international trade.
+                    Let Ship Africa Inc. is a Liberia-based logistics and trade facilitation company that guides businesses,
+                    organizations, entrepreneurs, and individuals through every step of international trade &mdash; not just the
+                    shipping itself.
                 </p>
                 <p>
                     Importing and exporting can be complicated &mdash; documentation, supplier coordination, transportation, and
-                    customs. <strong>Our mission is to simplify that process</strong>, so you can focus on growing your business.
+                    customs. <strong>We guide you through each step, from quotation to customs clearance</strong>, so you always
+                    know what's happening with your shipment and can focus on growing your business.
                 </p>
                 <ul class="list-unstyled mb-4">
                     <li class="d-flex align-items-start gap-3 mb-3">
@@ -222,26 +259,29 @@ require __DIR__ . '/includes/header.php';
 <section class="lsa-section">
     <div class="container">
         <p class="lsa-eyebrow text-center mb-2">Our Process</p>
-        <h2 class="fw-bold text-center mb-2">How We Work</h2>
-        <p class="text-center text-muted mb-5">We believe every successful shipment begins with proper planning. Our process is straightforward:</p>
-        <div class="row g-4 position-relative lsa-timeline">
-            <div class="lsa-timeline-line d-none d-lg-block"></div>
+        <h2 class="fw-bold text-center mb-2">We Guide You, Step by Step</h2>
+        <p class="text-center text-muted mb-5">From your first inquiry to final delivery, you'll always know what's happening and what comes next.</p>
+        <div class="row g-4">
             <?php
             $steps = [
-                ['bi-chat-left-text', 'Request a Quote', 'Submit an inquiry or intake form &mdash; free, with no obligation.'],
-                ['bi-clipboard-check', 'Review &amp; Quotation', 'We review your requirements and prepare a customized quote.'],
-                ['bi-truck', 'Confirm &amp; Coordinate', 'Confirm your booking as we coordinate with trusted partners.'],
-                ['bi-box-seam', 'Delivery', 'Cargo moves through transport and customs to its destination.'],
+                ['bi-chat-left-text', 'Submit a Shipping Inquiry', 'Tell us what you\'d like to ship &mdash; quick and simple, with no obligation.'],
+                ['bi-envelope-check', 'Instant Acknowledgement', 'You\'ll receive an automatic email confirming we\'ve received your inquiry.'],
+                ['bi-search', 'We Review Your Inquiry', 'Our team looks over the details you\'ve shared.'],
+                ['bi-telephone', 'We Contact You', 'A member of our team reaches out directly to discuss your shipment.'],
+                ['bi-file-earmark-text', 'Complete the Intake Form', 'We send you our Shipment Intake Form to capture the full details.'],
+                ['bi-clipboard-check', 'We Review Your Intake Form', 'Our team checks everything needed to prepare an accurate quote.'],
+                ['bi-receipt', 'Receive Your Quotation', 'We prepare and send your customized shipping quote.'],
             ];
             foreach ($steps as $i => [$icon, $title, $desc]): ?>
-                <div class="col-md-6 col-lg-3 text-center">
+                <div class="col-6 col-md-4 col-lg-3 text-center">
                     <div class="lsa-step-number mx-auto mb-3"><i class="bi <?= e($icon) ?>"></i></div>
+                    <p class="lsa-eyebrow mb-1">Step <?= $i + 1 ?></p>
                     <h5 class="fw-bold"><?= $title ?></h5>
                     <p class="text-muted small mb-0"><?= $desc ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
-        <p class="text-center text-muted mt-5 mb-0">Throughout the process, our team remains available to provide guidance and updates.</p>
+        <p class="text-center text-muted mt-5 mb-0">Throughout the process, our team stays in direct contact &mdash; answering questions and providing updates until your cargo arrives.</p>
     </div>
 </section>
 
@@ -273,16 +313,15 @@ require __DIR__ . '/includes/header.php';
         <h2 class="fw-bold mb-3">Ready to Move Your Business Forward?</h2>
         <p class="lsa-text-on-dark mb-4 mx-auto" style="max-width: 760px;">
             Whether you are importing products, exporting Liberian goods, sourcing internationally, or seeking a dependable
-            logistics partner, Let Ship Africa Inc. is ready to support your journey. We invite you to discover how professional
-            logistics solutions can help your business grow with confidence.
+            logistics partner, Let Ship Africa Inc. is ready to guide you from your first inquiry through to final delivery
+            &mdash; with clear communication at every step.
         </p>
         <div class="d-flex flex-wrap justify-content-center gap-3">
-            <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Request a Shipping Quote</a>
+            <a href="<?= e(SITE_URL) ?>/request-quote.php" class="btn btn-lsa-accent btn-lg fw-semibold">Start Your Shipping Inquiry</a>
             <a href="<?= e(SITE_URL) ?>/contact.php" class="btn btn-lsa-outline btn-lg fw-semibold">Contact Our Team</a>
         </div>
         <div class="mt-4">
-            <a href="<?= e(SITE_URL) ?>/partnership-inquiry.php" class="link-light small me-4">Explore Partnership Opportunities</a>
-            <a href="<?= e(SITE_URL) ?>/contact.php" class="link-light small">Complete an Import or Export Customer Intake Form</a>
+            <a href="<?= e(SITE_URL) ?>/partnership-inquiry.php" class="link-light small">Explore Partnership Opportunities</a>
         </div>
     </div>
 </section>

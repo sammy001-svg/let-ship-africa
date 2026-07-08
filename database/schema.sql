@@ -21,8 +21,25 @@ CREATE TABLE IF NOT EXISTS admin_users (
 -- password hash would be a public, permanent target). Create your own admin
 -- account after importing this schema; see README.md "Create your admin account".
 
-CREATE TABLE IF NOT EXISTS quote_requests (
+-- Stage 1 of the customer journey: a lightweight first-contact inquiry.
+-- Detailed shipment specifics are collected later in shipment_intake_forms,
+-- once our team has made direct contact with the customer.
+CREATE TABLE IF NOT EXISTS shipping_inquiries (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    company VARCHAR(150) NULL,
+    message TEXT NOT NULL,
+    status ENUM('new', 'contacted', 'intake_sent', 'quoted', 'closed') NOT NULL DEFAULT 'new',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- Stage 2: the detailed Customer Shipment Intake Form, sent to the customer
+-- after our team has reviewed and made contact on their initial inquiry.
+CREATE TABLE IF NOT EXISTS shipment_intake_forms (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    inquiry_id INT UNSIGNED NULL,
     full_name VARCHAR(150) NOT NULL,
     email VARCHAR(150) NOT NULL,
     phone VARCHAR(50) NOT NULL,
@@ -34,8 +51,9 @@ CREATE TABLE IF NOT EXISTS quote_requests (
     weight VARCHAR(50) NULL,
     dimensions VARCHAR(100) NULL,
     additional_notes TEXT NULL,
-    status ENUM('new', 'contacted', 'quoted', 'closed') NOT NULL DEFAULT 'new',
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    status ENUM('new', 'reviewed', 'quoted', 'closed') NOT NULL DEFAULT 'new',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_intake_inquiry FOREIGN KEY (inquiry_id) REFERENCES shipping_inquiries(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS partnership_inquiries (

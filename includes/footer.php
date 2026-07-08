@@ -16,7 +16,7 @@
             <div class="col-lg-2 col-6">
                 <h6 class="text-white fw-semibold mb-3">Get Started</h6>
                 <ul class="list-unstyled lsa-footer-links">
-                    <li><a href="<?= e(SITE_URL) ?>/request-quote.php">Request a Quote</a></li>
+                    <li><a href="<?= e(SITE_URL) ?>/request-quote.php">Start Your Shipping Inquiry</a></li>
                     <li><a href="<?= e(SITE_URL) ?>/partnership-inquiry.php">Become a Partner</a></li>
                     <li><a href="<?= e(SITE_URL) ?>/contact.php">Contact Our Team</a></li>
                 </ul>
@@ -34,6 +34,10 @@
         <p class="text-center lsa-text-on-dark small mb-0">&copy; <?= date('Y') ?> Let Ship Africa Inc. All rights reserved.</p>
     </div>
 </footer>
+
+<a href="https://wa.me/231880835470?text=<?= rawurlencode('Hello Let Ship Africa, I\'d like to ask about a shipment.') ?>" class="lsa-whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+</a>
 
 <button type="button" id="lsaBackToTop" class="lsa-back-to-top" aria-label="Back to top">
     <i class="bi bi-arrow-up"></i>

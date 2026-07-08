@@ -49,6 +49,13 @@ choose `database/schema.sql` from the uploaded files → **Go**.
 This only creates tables (no `CREATE DATABASE`/`USE` statements — shared-hosting DB users
 usually can't create databases, only use ones already provisioned above).
 
+**Already deployed with an older schema?** If your live database still has the old
+`quote_requests` table (from before the Shipping Inquiry / Shipment Intake Form journey
+was split into two stages), don't re-import `schema.sql` — it won't touch existing tables.
+Instead run `database/migration_shipping_inquiries.sql` once via phpMyAdmin's **SQL** tab.
+It renames `quote_requests` to `shipping_inquiries`, widens a couple of columns, and adds
+the new `shipment_intake_forms` table — all without dropping any existing submissions.
+
 No admin account is seeded (this repo is public — a shipped password hash would be a
 permanent public target). Create your own:
 
@@ -112,13 +119,18 @@ block in `.htaccess` until it's ready.
 
 - [ ] Home page loads at `https://yourdomain.com` with images and the hero carousel
 - [ ] Nav links (About, Services, Partnerships, FAQ, Contact) all load
-- [ ] Submit the Contact form, Request Quote form, and Partnership Inquiry form —
-      confirm each shows a success message
-- [ ] Check phpMyAdmin — confirm the 3 submissions landed in `quote_requests`,
+- [ ] Submit the Contact form, the "Start Your Shipping Inquiry" form, and the
+      Partnership Inquiry form — confirm each shows a success message
+- [ ] Check phpMyAdmin — confirm the 3 submissions landed in `shipping_inquiries`,
       `partnership_inquiries`, `contact_messages`
-- [ ] Confirm the notification email arrived (once SMTP is configured)
+- [ ] Confirm both the staff notification email and the customer acknowledgement email
+      arrived (once SMTP is configured)
 - [ ] Log into `/admin/login.php` with the account created in step 3, confirm the
       dashboard shows the test submissions
+- [ ] From *Shipping Inquiries* in the admin panel, click **Send Intake Form** on the
+      test inquiry — confirm the customer email arrives with a working link to
+      `/shipment-intake-form.php`, submit it, and confirm it appears under
+      *Shipment Intake Forms*
 - [ ] Visit `https://yourdomain.com/config/config.php` directly — should be blocked
       (403), same for `/database/schema.sql`, `/includes/db.php`, `/vendor/...`
 - [ ] Confirm `http://yourdomain.com` (no `s`) redirects to `https://`

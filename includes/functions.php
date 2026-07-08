@@ -62,10 +62,10 @@ function flash_get(): ?array
 }
 
 /**
- * Sends a lead-notification email to the staff inbox via PHPMailer/SMTP.
+ * Sends an HTML email via PHPMailer/SMTP using the site's configured mailbox.
  * Returns true on success; failures are logged, not fatal (the DB record is what matters).
  */
-function send_notification_email(string $subject, string $bodyHtml): bool
+function send_email(string $toEmail, string $toName, string $subject, string $bodyHtml): bool
 {
     require_once __DIR__ . '/../vendor/phpmailer/src/Exception.php';
     require_once __DIR__ . '/../vendor/phpmailer/src/PHPMailer.php';
@@ -85,7 +85,7 @@ function send_notification_email(string $subject, string $bodyHtml): bool
         $mail->Port = SMTP_PORT;
 
         $mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);
-        $mail->addAddress(NOTIFY_TO_EMAIL);
+        $mail->addAddress($toEmail, $toName);
 
         $mail->isHTML(true);
         $mail->Subject = $subject;
@@ -94,7 +94,19 @@ function send_notification_email(string $subject, string $bodyHtml): bool
         $mail->send();
         return true;
     } catch (Throwable $e) {
-        error_log('Notification email failed: ' . $e->getMessage());
+        error_log('Email send failed: ' . $e->getMessage());
         return false;
     }
+}
+
+/** Sends a lead-notification email to the staff inbox. */
+function send_notification_email(string $subject, string $bodyHtml): bool
+{
+    return send_email(NOTIFY_TO_EMAIL, SITE_NAME, $subject, $bodyHtml);
+}
+
+/** Sends an automatic acknowledgement/confirmation email to a customer. */
+function send_customer_email(string $toEmail, string $toName, string $subject, string $bodyHtml): bool
+{
+    return send_email($toEmail, $toName, $subject, $bodyHtml);
 }

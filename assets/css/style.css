@@ -35,6 +35,8 @@ h2.fw-bold { font-weight: 700 !important; }
 .lsa-navbar {
     background-color: var(--lsa-navy);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
 }
 .lsa-navbar .nav-link {
     color: rgba(255, 255, 255, 0.85);
@@ -45,21 +47,21 @@ h2.fw-bold { font-weight: 700 !important; }
     color: #fff;
 }
 .lsa-logo {
-    height: 68px;
+    height: 42px;
     width: auto;
     display: block;
 }
 .lsa-logo-badge {
     background-color: #fff;
-    border-radius: 10px;
-    padding: 6px 10px;
+    border-radius: 8px;
+    padding: 3px 7px;
     display: inline-flex;
     align-items: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 .lsa-brand-text {
     color: #fff;
-    font-size: 1.35rem;
+    font-size: 1.05rem;
     font-weight: 700;
 }
 .lsa-logo-footer {
@@ -235,6 +237,10 @@ h2.fw-bold { font-weight: 700 !important; }
 /* Sections */
 .lsa-section { padding: 4.5rem 0; }
 .lsa-section-alt { background-color: var(--lsa-light); }
+.lsa-trust-bar {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(1, 146, 155, 0.12);
+}
 .lsa-text-on-dark { color: rgba(255, 255, 255, 0.88) !important; }
 
 .lsa-eyebrow {
@@ -445,3 +451,28 @@ h2.fw-bold { font-weight: 700 !important; }
     transform: translateY(0);
 }
 .lsa-back-to-top:hover { background-color: var(--lsa-accent); }
+
+/* Floating WhatsApp button */
+.lsa-whatsapp-float {
+    position: fixed;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: #fff;
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s ease, background-color 0.15s ease;
+    z-index: 1030;
+}
+.lsa-whatsapp-float:hover,
+.lsa-whatsapp-float:focus {
+    background-color: #1ebe5a;
+    color: #fff;
+    transform: scale(1.08);
+}

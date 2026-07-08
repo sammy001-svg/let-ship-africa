@@ -1,23 +1,23 @@
 <?php
-$pageTitle = 'Request a Shipping Quote';
-$pageDescription = 'Request a free, no-obligation shipping quote for air freight, ocean freight, or cargo consolidation.';
+$pageTitle = 'Start Your Shipping Inquiry';
+$pageDescription = 'Start a free, no-obligation shipping inquiry. Tell us what you need to ship and our team will reach out to guide you through the rest.';
 require __DIR__ . '/includes/header.php';
 ?>
 
 <section class="lsa-hero-photo lsa-hero-sm text-center" style="background-image: url('<?= e(SITE_URL) ?>/assets/img/stock/warehouse-forklift.jpg');">
     <div class="container">
-        <p class="lsa-eyebrow mb-2">Get a Quote</p>
-        <h1 class="fw-bold">Request a Shipping Quote</h1>
-        <p class="lsa-text-on-dark mb-0">Tell us about your shipment and our logistics team will prepare a customized quotation.</p>
+        <p class="lsa-eyebrow mb-2">Get Started</p>
+        <h1 class="fw-bold">Start Your Shipping Inquiry</h1>
+        <p class="lsa-text-on-dark mb-0">Tell us what you'd like to ship. Our team will review your inquiry and reach out to guide you through the next steps.</p>
     </div>
 </section>
 
 <section class="lsa-section">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <div class="lsa-card lsa-form-card p-4 p-md-5">
-                    <form action="<?= e(SITE_URL) ?>/process/process-quote.php" method="post" data-guard-submit novalidate>
+                    <form action="<?= e(SITE_URL) ?>/process/process-inquiry.php" method="post" data-guard-submit novalidate>
                         <?= csrf_field() ?>
                         <?= honeypot_field() ?>
                         <div class="row g-3">
@@ -37,43 +37,13 @@ require __DIR__ . '/includes/header.php';
                                 <label class="form-label" for="company">Company Name (if applicable)</label>
                                 <input type="text" class="form-control" id="company" name="company" maxlength="150">
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label" for="shipment_type">Shipment Type *</label>
-                                <select class="form-select" id="shipment_type" name="shipment_type" required>
-                                    <option value="" selected disabled>Choose...</option>
-                                    <option value="air">Air Freight</option>
-                                    <option value="ocean">Ocean Freight</option>
-                                    <option value="consolidation">Cargo Consolidation</option>
-                                    <option value="other">Other / Not Sure</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label" for="origin_country">Origin Country *</label>
-                                <input type="text" class="form-control" id="origin_country" name="origin_country" required maxlength="100">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label" for="destination_country">Destination Country *</label>
-                                <input type="text" class="form-control" id="destination_country" name="destination_country" required maxlength="100" value="Liberia">
+                            <div class="col-12">
+                                <label class="form-label" for="message">What would you like to ship? *</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" required placeholder="A brief description is fine — e.g. what you're shipping, roughly where from/to, and when. We'll follow up to get the rest of the details."></textarea>
                             </div>
                             <div class="col-12">
-                                <label class="form-label" for="cargo_description">Description of Goods *</label>
-                                <textarea class="form-control" id="cargo_description" name="cargo_description" rows="3" required></textarea>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="weight">Estimated Weight</label>
-                                <input type="text" class="form-control" id="weight" name="weight" maxlength="50" placeholder="e.g. 250 kg">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="dimensions">Estimated Dimensions</label>
-                                <input type="text" class="form-control" id="dimensions" name="dimensions" maxlength="100" placeholder="e.g. 2 pallets, 1.2m x 1m x 1m">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label" for="additional_notes">Additional Notes</label>
-                                <textarea class="form-control" id="additional_notes" name="additional_notes" rows="3" placeholder="Timeline, special handling requirements, etc."></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-lsa-accent btn-lg fw-semibold w-100">Submit Quote Request</button>
-                                <p class="text-muted small mt-2 mb-0">Submitting a quotation request is free and does not obligate you to book a shipment.</p>
+                                <button type="submit" class="btn btn-lsa-accent btn-lg fw-semibold w-100">Submit Inquiry</button>
+                                <p class="text-muted small mt-2 mb-0">Submitting an inquiry is free and does not obligate you to book a shipment. You'll receive an email confirmation, and our team will follow up with next steps.</p>
                             </div>
                         </div>
                     </form>

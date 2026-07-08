@@ -50,7 +50,7 @@ require __DIR__ . '/includes/header.php';
                     <hr class="border-secondary my-4">
                     <p class="mb-2 fw-semibold text-white">Looking for something specific?</p>
                     <ul class="list-unstyled mb-0">
-                        <li class="mb-2"><a class="link-light" href="<?= e(SITE_URL) ?>/request-quote.php">Request a Shipping Quote &rarr;</a></li>
+                        <li class="mb-2"><a class="link-light" href="<?= e(SITE_URL) ?>/request-quote.php">Start Your Shipping Inquiry &rarr;</a></li>
                         <li class="mb-2"><a class="link-light" href="<?= e(SITE_URL) ?>/partnership-inquiry.php">Become a Logistics Partner &rarr;</a></li>
                         <li><a class="link-light" href="<?= e(SITE_URL) ?>/faq.php">Read our FAQ &rarr;</a></li>
                     </ul>
