@@ -25,7 +25,8 @@
                 <h6 class="text-white fw-semibold mb-3">Contact</h6>
                 <ul class="list-unstyled lsa-footer-links">
                     <li><i class="bi bi-geo-alt-fill me-2"></i>Neezoe Road, Opposite James David Hospital, Paynesville, Liberia</li>
-                    <li><i class="bi bi-telephone-fill me-2"></i><a href="tel:+231880835470">+231 88 083 5470</a></li>
+                    <li><i class="bi bi-telephone-fill me-2"></i><a href="tel:+231772404947">+231 772 404 947</a></li>
+                    <li><i class="bi bi-whatsapp me-2"></i><a href="https://wa.me/231880835470" target="_blank" rel="noopener">+231 880 835 470</a></li>
                     <li><i class="bi bi-envelope-fill me-2"></i><a href="mailto:info@letshipafrica.com">info@letshipafrica.com</a></li>
                 </ul>
             </div>

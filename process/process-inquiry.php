@@ -72,7 +72,7 @@ $customerEmailBody = sprintf(
         <li>We send you our Shipment Intake Form to capture the full details.</li>
         <li>Once we\'ve reviewed your completed intake form, we prepare your customized quotation.</li>
     </ol>
-    <p>If you have any questions in the meantime, reply to this email or reach us on WhatsApp at +231 88 083 5470.</p>
+    <p>If you have any questions in the meantime, reply to this email or reach us on WhatsApp at +231 880 835 470.</p>
     <p>Best regards,<br>%s</p>',
     e($fullName), e(SITE_NAME), e(SITE_NAME)
 );

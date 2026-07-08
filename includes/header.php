@@ -49,8 +49,9 @@ function nav_active(string $page, string $current): string
         'url' => SITE_URL . '/index.php',
         'image' => $ogImage,
         'logo' => SITE_URL . '/assets/img/logo.png',
-        'telephone' => '+231880835470',
+        'telephone' => '+231772404947',
         'email' => 'info@letshipafrica.com',
+        'sameAs' => ['https://wa.me/231880835470'],
         'address' => [
             '@type' => 'PostalAddress',
             'streetAddress' => 'Neezoe Road, Opposite James David Hospital',
@@ -58,10 +59,18 @@ function nav_active(string $page, string $current): string
             'addressCountry' => 'LR',
         ],
         'openingHoursSpecification' => [
-            '@type' => 'OpeningHoursSpecification',
-            'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            'opens' => '09:00',
-            'closes' => '17:00',
+            [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                'opens' => '08:00',
+                'closes' => '17:00',
+            ],
+            [
+                '@type' => 'OpeningHoursSpecification',
+                'dayOfWeek' => ['Saturday'],
+                'opens' => '08:00',
+                'closes' => '13:00',
+            ],
         ],
     ], JSON_UNESCAPED_SLASHES) ?>
     </script>

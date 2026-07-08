@@ -30,7 +30,14 @@ require __DIR__ . '/includes/header.php';
                         <div class="icon-badge icon-badge-light flex-shrink-0"><i class="bi bi-telephone-fill"></i></div>
                         <div>
                             <h6 class="fw-semibold text-white mb-1">Phone</h6>
-                            <p class="lsa-text-on-dark small mb-0"><a class="link-light" href="tel:+231880835470">+231 88 083 5470</a></p>
+                            <p class="lsa-text-on-dark small mb-0"><a class="link-light" href="tel:+231772404947">+231 772 404 947</a></p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="icon-badge icon-badge-light flex-shrink-0"><i class="bi bi-whatsapp"></i></div>
+                        <div>
+                            <h6 class="fw-semibold text-white mb-1">WhatsApp</h6>
+                            <p class="lsa-text-on-dark small mb-0"><a class="link-light" href="https://wa.me/231880835470" target="_blank" rel="noopener">+231 880 835 470</a></p>
                         </div>
                     </div>
                     <div class="d-flex gap-3 mb-4">
@@ -44,7 +51,9 @@ require __DIR__ . '/includes/header.php';
                         <div class="icon-badge icon-badge-light flex-shrink-0"><i class="bi bi-clock-fill"></i></div>
                         <div>
                             <h6 class="fw-semibold text-white mb-1">Business Hours</h6>
-                            <p class="lsa-text-on-dark small mb-0">Monday &ndash; Friday, 9:00 AM &ndash; 5:00 PM GMT</p>
+                            <p class="lsa-text-on-dark small mb-1">Monday &ndash; Friday: 8:00 AM &ndash; 5:00 PM</p>
+                            <p class="lsa-text-on-dark small mb-1">Saturday: 8:00 AM &ndash; 1:00 PM</p>
+                            <p class="lsa-text-on-dark small mb-0">Sunday: Closed &mdash; other times by appointment</p>
                         </div>
                     </div>
                     <hr class="border-secondary my-4">
